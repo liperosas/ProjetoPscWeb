@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Cadastre-se e abra suas portas para o futuro</title>
+</h:head>
+<h:body>
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" size="100">
+		</p:layoutUnit>
+		<p:layoutUnit position="west" size="200">
+		</p:layoutUnit>
+		<p:layoutUnit position="center">
+			<h:form id="formCadastroConcursando">
+				<p:panel id="panelDadosPessoaisConcursando" header="Dados Pessoais"
+					style="width:700px;">
+					<p:messages id="errorDadosPessoaisConcursando" />
+					<b>#{concursandoBean.mensagem}</b>
+					<h:panelGrid columns="2">
+						<h:outputLabel for="nome" value="Nome: *" style="font-weight:bold"
+							id="lNome" />
+						<p:inputText id="nome" value="#{concursandoBean.concursando.nome}"
+							required="true" requiredMessage="Informe um Nome válido"
+							label="lNome" style="width:400px;" />
+						<h:outputLabel for="rg" value="Rg: *" style="font-weight:bold"
+							id="lRg" />
+						<p:inputMask id="rg" value="#{concursandoBean.concursando.rg}"
+							required="true" requiredMessage="Informe um Rg válido"
+							label="lRg" maxlength="9" style="width:100px;" mask="9.999.999" />
+						<h:outputLabel for="cpf" value="CPF: *" style="font-weight:bold"
+							id="lCpf" />
+						<p:inputMask id="cpf" value="#{concursandoBean.concursando.cpf}"
+							required="true" requiredMessage="Informe um Cpf válido"
+							label="lCpf" maxlength="14" style="width:150px;"
+							mask="999.999.999-99" />
+						<h:outputLabel for="telefone" value="Telefone: *"
+							style="font-weight:bold" id="lTelefone" />
+						<p:inputMask id="telefone"
+							value="#{concursandoBean.concursando.telefone}" required="true"
+							requiredMessage="Informe um Telefone válido" label="lTelefone"
+							maxlength="14" style="width:150px;" mask="(99)9999-9999" />
+						<h:outputLabel for="celular" value="Celular: *"
+							style="font-weight:bold" id="lCelular" />
+						<p:inputMask id="celular"
+							value="#{concursandoBean.concursando.celular}" required="false"
+							label="lCelular" maxlength="14" style="width:150px;"
+							mask="(99)9999-9999" />
+						<h:outputLabel for="login" value="Login: *"
+							style="font-weight:bold" id="lLogin" />
+						<p:inputText id="login"
+							value="#{concursandoBean.concursando.login}" required="true"
+							requiredMessage="Informe um Login válido" label="lLogin"
+							style="width:400px;" />
+						<h:outputLabel for="senha" value="Senha: *" id="lSenha"
+							style="font-weight:bold" />
+						<p:password id="senha"
+							value="#{concursandoBean.concursando.senha}" required="true"
+							requiredMessage="Informe uma Senha válida" label="lSenha"
+							maxlength="18" feedback="true" />
+					</h:panelGrid>
+				</p:panel>
+				<p:panel id="panelEnderecoConcursando" header="Endereço"
+					style="width:700px;">
+					<p:panelGrid columns="2">
+						<h:outputLabel for="cep" value="Cep: *" style="font-weight:bold"
+							id="lCep" />
+						<p:inputMask id="cep"
+							value="#{concursandoBean.concursando.endereco.cep}"
+							required="true" requiredMessage="Informe um Cep válido"
+							label="lCep" style="width:100px;" maxlength="9" mask="99999-999" />
+						<h:outputLabel for="cidade" value="Cidade: *"
+							style="font-weight:bold" id="lCidade" />
+						<p:inputText id="cidade"
+							value="#{concursandoBean.concursando.endereco.cidade}"
+							required="true" requiredMessage="Informe uma Cidade válido"
+							label="lCidade" style="width:200px;" />
+						<h:outputLabel for="bairro" value="Bairro: *"
+							style="font-weight:bold" id="lBairro" />
+						<p:inputText id="bairro"
+							value="#{concursandoBean.concursando.endereco.bairro}"
+							required="true" requiredMessage="Informe uma Bairro válido"
+							label="lBairro" style="width:200px;" />
+						<h:outputLabel for="logradouro" value="Logradouro: *"
+							style="font-weight:bold" id="lLogradouro" />
+						<p:inputText id="logradouro"
+							value="#{concursandoBean.concursando.endereco.logradouro}"
+							required="true" requiredMessage="Informe um Logradouro válido"
+							label="lLogradouro" style="width:400px;" />
+						<h:outputLabel for="uf" value="UF: *" style="font-weight:bold"
+							id="lUf" />
+						<p:inputText id="uf"
+							value="#{concursandoBean.concursando.endereco.uf}"
+							required="true" requiredMessage="Informe um UF válido"
+							label="lUf" style="width:50px;" maxlength="2" />
+						<h:outputLabel for="numero" value="Número: *"
+							style="font-weight:bold" id="lNumero" />
+						<p:inputText id="numero"
+							value="#{concursandoBean.concursando.endereco.numero}"
+							required="true" requiredMessage="Informe um Cep válido"
+							label="lNumero" style="width:90px;" maxlength="8" />
+						<h:outputLabel for="complemento" value="Complemento: *"
+							style="font-weight:bold" id="lComplemento" />
+						<p:inputText id="complemento"
+							value="#{concursandoBean.concursando.endereco.complemento}"
+							required="false" label="lComplemento" style="width:100px;"
+							maxlength="20" />
+					</p:panelGrid>
+				</p:panel>
+				<h:panelGrid>
+					<p:commandButton value="Cadastrar"
+						action="#{concursandoBean.cadastrarConcursando}" ajax="false" />
+				</h:panelGrid>
+			</h:form>
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
+</html>

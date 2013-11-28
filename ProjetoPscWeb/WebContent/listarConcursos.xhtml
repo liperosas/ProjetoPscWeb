@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Bem Vindos Concursandos</title>
+</h:head>
+<h:body>
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" size="100">
+		</p:layoutUnit>
+		<p:layoutUnit position="south" size="100">
+		</p:layoutUnit>
+		<p:layoutUnit position="west" size="200">
+		</p:layoutUnit>
+		<p:layoutUnit position="center">
+			<h:form id="form">
+				<p:ring id="concursos" value="#{concursoBean.concursos}"
+					var="concurso" columns="3">
+					<p:outputPanel style="text-align:center">
+				#{concurso.nomeConcurso}"
+				<p:commandButton update=":form:detail" icon="ui-icon-search"
+							title="View" oncomplete="PF('dlg').show()">
+							<f:setPropertyActionListener value="#{concurso}"
+								target="#{concursoBean.selectedConcurso}" />
+						</p:commandButton>
+
+					</p:outputPanel>
+				</p:ring>
+				<p:dialog id="dialog" widgetVar="dlg" showEffect="fade"
+					hideEffect="fade" modal="true" width="125">
+
+					<p:outputPanel id="detail" style="text-align:center;"
+						layout="block">
+
+						<h:panelGrid columns="2" cellpadding="5"
+							rendered="#{not empty concursoBean.selectedConcurso}">
+
+							<h:outputText value="Name: " />
+							<h:outputText id="modelNo"
+								value="#{concursoBean.selectedConcurso.nomeConcurso}" />
+
+						</h:panelGrid>
+					</p:outputPanel>
+
+				</p:dialog>
+			</h:form>
+
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
+</html>
