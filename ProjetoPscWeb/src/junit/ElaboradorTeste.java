@@ -35,7 +35,7 @@ public class ElaboradorTeste extends TestCase {
 		endereco.setCep("50550-440");
 		endereco.setLogradouro("Rua DR.Machado");
 		endereco.setNumero("'643");
-		endereco.setComplemento("b");
+		endereco.setComplemento("c");
 		elaborador.setEndereco(endereco);
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
