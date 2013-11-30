@@ -33,10 +33,14 @@ public class ListarElaborador extends javax.swing.JFrame {
             modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new Object[]{"Id", "Nome", "CPF", "RG", "DataNasc", "Telefone", "Celular", "Formação", "Cep", "UF", "Cidade"});
             ArrayList<Elaborador> elaboradores = new ArrayList<Elaborador>();
+            
             elaboradores = (ArrayList<Elaborador>) fachada.consultarTodosElaborador();
             for (Elaborador elaborador : elaboradores) {
+                if(elaborador.getStatus()==1){
                 modelo.addRow(new String[]{Long.toString(elaborador.getId()), elaborador.getNome(), elaborador.getCpf(), elaborador.getRg(), (elaborador.getData_nasc().get(5) + "/" + elaborador.getData_nasc().get(2) + "/" + elaborador.getData_nasc().get(1)), elaborador.getTelefone(), elaborador.getCelular(), elaborador.getFormacao(), elaborador.getEndereco().getCep(), elaborador.getEndereco().getUf(), elaborador.getEndereco().getCidade()});
-            }
+               }
+                //else{JOptionPane.showMessageDialog(rootPane, "Não Há elaboradores ativos");}
+                }
             tableElaborador.setModel(modelo);
             // TODO add your handling code here:
         } catch (Exception ex) {
@@ -84,7 +88,6 @@ public class ListarElaborador extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
-        jMenuItem17 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
@@ -138,7 +141,7 @@ public class ListarElaborador extends javax.swing.JFrame {
         tableElaborador.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(tableElaborador);
 
-        jMenu1.setText("Lista");
+        jMenu1.setText("Menu");
 
         jMenu3.setMnemonic('p');
         jMenu3.setText("Prova");
@@ -166,7 +169,7 @@ public class ListarElaborador extends javax.swing.JFrame {
         jMenu4.setMnemonic('C');
         jMenu4.setText("Concurso");
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem6.setText("Cadastro");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,7 +178,7 @@ public class ListarElaborador extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem6);
 
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItem7.setText("Lista");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,15 +295,6 @@ public class ListarElaborador extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem16);
 
-        jMenuItem17.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.SHIFT_MASK));
-        jMenuItem17.setText("Lista");
-        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem17ActionPerformed(evt);
-            }
-        });
-        jMenu8.add(jMenuItem17);
-
         jMenu1.add(jMenu8);
 
         jMenu9.setMnemonic('F');
@@ -328,9 +322,9 @@ public class ListarElaborador extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Ferramentas");
+        jMenu2.setText("Opcoes");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, 0));
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText("Home");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -429,7 +423,7 @@ public class ListarElaborador extends javax.swing.JFrame {
     }
     private void CadastrarElaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarElaboradorActionPerformed
         // TODO add your handling code here:
-        CRUDElaborador ce = new CRUDElaborador();
+        CRUDElaborador ce = new CRUDElaborador(this);
         ce.setVisible(true);
     }//GEN-LAST:event_CadastrarElaboradorActionPerformed
 
@@ -469,7 +463,7 @@ public class ListarElaborador extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        CRUDConcurso crudC= new CRUDConcurso();
+        CRUDConcurso crudC= new CRUDConcurso(null);
         crudC.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -487,8 +481,8 @@ public class ListarElaborador extends javax.swing.JFrame {
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         // TODO add your handling code here:
-        ListarQuestao lstQ= new ListarQuestao();
-        lstQ.setVisible(true);
+        ListarQuestao listarq= new ListarQuestao();
+        listarq.setVisible(true);
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
@@ -529,16 +523,9 @@ public class ListarElaborador extends javax.swing.JFrame {
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
-        CRUDElaborador el= new CRUDElaborador();
+        CRUDElaborador el= new CRUDElaborador(this);
         el.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
-
-    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-        // TODO add your handling code here:
-        ListarElaborador lstEl= new ListarElaborador();
-        lstEl.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
@@ -629,7 +616,6 @@ public class ListarElaborador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;

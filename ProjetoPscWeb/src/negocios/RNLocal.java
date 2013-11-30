@@ -15,13 +15,14 @@ import java.util.List;
  * @author RAFAELSANTIAGO
  */
 public class RNLocal {
-    
+
     LocalDAOImpl dao;
-    public RNLocal(){
-     dao= FactoryDAO.getLocalDAOImpl();
+
+    public RNLocal() {
+        dao = FactoryDAO.getLocalDAOImpl();
     }
-    
-        public boolean validarEndereco(Endereco endereco) throws Exception {
+
+    public boolean validarEndereco(Endereco endereco) throws Exception {
         if (endereco.getBairro().equals("") || endereco.getBairro() == null) {
             throw new Exception("Bairro inv�lido");
         }/* else if (validarCEP(endereco.getCep()) == false
@@ -41,35 +42,40 @@ public class RNLocal {
         }
         return false;
     }
-        public boolean validarCEP(String cep) {
+
+    public boolean validarCEP(String cep) {
         return cep.matches("\\[0-9]{5}?\\-[0-9]{3}?");
     }
-        
-        public void inserir (Local local)throws Exception{
-           
-            dao.inserir(local);
+
+    public void inserir(Local local) throws Exception {
+        if (local.getNome().equals("") || local.getNome() == null) {
+            throw new Exception("Informe um local");
         }
-        
-        public void atualizar (Local local)throws Exception{
-         dao.atualizar(local);
+        this.validarEndereco(local.getEndereco());
+        dao.inserir(local);
+    }
+
+    public void atualizar(Local local) throws Exception {
+        if (local.getNome().equals("") || local.getNome() == null) {
+            throw new Exception("Informe um local");
         }
-       
-         public void remover(long id) throws Exception{
+        this.validarEndereco(local.getEndereco());
+        dao.atualizar(local);
+    }
+
+    public void remover(long id) throws Exception {
         if (id <= 0) {
             throw new Exception("ID inválido");
-        }
-        else{
+        } else {
             dao.remover(id);
         }
     }
-    
+
     public List<Local> consultarTodos() throws Exception {
-		return dao.consultarTodos();
-	}
-    
+        return dao.consultarTodos();
+    }
+
     public Local consultarPorId(long id) throws Exception {
-		return dao.consultarPorId(id);
-	}
-    
-    
+        return dao.consultarPorId(id);
+    }
 }

@@ -9,7 +9,6 @@ import classes.Elaborador;
 import classes.Genero;
 import classes.QuestaoDiscursiva;
 import classes.QuestaoMultiplaEscolha;
-import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 import fachada.Fachada;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,9 +49,11 @@ public class CRUDQuestao extends javax.swing.JFrame {
             codElaboradores = new long[elaboradores.size()];
             int i = 0;
             for (Elaborador elaborador : elaboradores) {
+                if (elaborador.getStatus() != 0){
                 comboElaboradorQuestao.addItem(elaborador.getNome());
                 codElaboradores[i] = elaborador.getId();
                 i++;
+                }
             }
             radioDiscursiva.setSelected(true);
         } catch (Exception ex) {
@@ -122,7 +123,6 @@ public class CRUDQuestao extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu14 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
@@ -246,7 +246,7 @@ public class CRUDQuestao extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("Lista");
+        jMenu1.setText("Menu");
 
         jMenu3.setMnemonic('p');
         jMenu3.setText("Prova");
@@ -274,7 +274,7 @@ public class CRUDQuestao extends javax.swing.JFrame {
         jMenu4.setMnemonic('C');
         jMenu4.setText("Concurso");
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem6.setText("Cadastro");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,7 +283,7 @@ public class CRUDQuestao extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem6);
 
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItem7.setText("Lista");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,15 +296,6 @@ public class CRUDQuestao extends javax.swing.JFrame {
 
         jMenu14.setMnemonic('Q');
         jMenu14.setText("Questão");
-
-        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem9.setText("Cadastro");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        jMenu14.add(jMenuItem9);
 
         jMenuItem24.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItem24.setText("Lista");
@@ -436,9 +427,9 @@ public class CRUDQuestao extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Ferramentas");
+        jMenu2.setText("Opcoes");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, 0));
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText("Home");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -628,7 +619,9 @@ public class CRUDQuestao extends javax.swing.JFrame {
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
             }
+            
         }
+        this.dispose();
     }//GEN-LAST:event_ButtonLimparQuestaoActionPerformed
 
     private void radioDiscursivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioDiscursivaActionPerformed
@@ -711,7 +704,7 @@ public class CRUDQuestao extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        CRUDConcurso crudC= new CRUDConcurso();
+        CRUDConcurso crudC= new CRUDConcurso(null);
         crudC.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -721,16 +714,10 @@ public class CRUDQuestao extends javax.swing.JFrame {
         lstC.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
-        CRUDQuestao crudQ= new CRUDQuestao(null);
-        crudQ.setVisible(true);
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
-
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         // TODO add your handling code here:
-        ListarQuestao lstQ= new ListarQuestao();
-        lstQ.setVisible(true);
+        ListarQuestao listarq= new ListarQuestao();
+        listarq.setVisible(true);
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
@@ -771,7 +758,7 @@ public class CRUDQuestao extends javax.swing.JFrame {
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
-        CRUDElaborador el= new CRUDElaborador();
+        CRUDElaborador el= new CRUDElaborador(null);
         el.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
@@ -890,7 +877,6 @@ public class CRUDQuestao extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

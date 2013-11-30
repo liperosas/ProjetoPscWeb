@@ -22,14 +22,23 @@ public class RNGenero {
     }
 
     public void inserir(Genero genero) throws Exception {
+        if (genero.getGenero().equals("") || genero.getGenero() == null) {
+            throw new Exception("Favor informar um gênero válido");
+        }
         dao.inserir(genero);
     }
 
     public void atualizar(Genero genero) throws Exception {
+        if (genero.getGenero().equals("") || genero.getGenero() == null) {
+            throw new Exception("Favor informar um gênero válido");
+        }
         dao.atualizar(genero);
     }
 
     public void remover(long id) throws Exception {
+        if (id <= 0) {
+            throw new Exception("Id inválido.");
+        }
         dao.remover(id);
     }
 

@@ -5,12 +5,15 @@
 package gui;
 
 import classes.Alternativa;
+import classes.CartaoResposta;
+import classes.Concursando;
 import classes.Fase;
 import classes.Gabarito;
 import classes.Prova;
 import classes.Questao;
 import classes.QuestaoDiscursiva;
 import classes.QuestaoMultiplaEscolha;
+import classes.RespostasProva;
 import fachada.Fachada;
 import fachada.IFachada;
 import java.text.SimpleDateFormat;
@@ -33,15 +36,50 @@ public class CRUDGabaritoProva extends javax.swing.JFrame {
     Prova prova;
     List<QuestaoMultiplaEscolha> questoesMult;
     List<QuestaoDiscursiva> questoesDisc;
-    Gabarito gabarito = new Gabarito();
+    RespostasProva respostasProva;
     IFachada fachada = Fachada.obterInstancia();
 
     public CRUDGabaritoProva(Prova prova) {
         initComponents();
+        respostasProva = new Gabarito();
         this.prova = prova;
         questoesMult = new ArrayList<QuestaoMultiplaEscolha>();
         questoesDisc = new ArrayList<QuestaoDiscursiva>();
-        gabarito.setProva(prova);
+        respostasProva.setProva(prova);
+        for (Questao questao : prova.getQuestoes()) {
+            if (questao instanceof QuestaoMultiplaEscolha) {
+                questoesMult.add((QuestaoMultiplaEscolha) questao);
+            } else {
+                questoesDisc.add((QuestaoDiscursiva) questao);
+            }
+        }
+        LabelEmpresa.setText("Empresa: " + prova.getDiaFase().getFase().getAreaconcurso().getConcurso().getEmpresa().getNome());
+        LabelConcurso.setText("Concurso: " + prova.getDiaFase().getFase().getAreaconcurso().getConcurso().getNomeConcurso());
+        LabelAreaConcurso.setText("Area do Concurso: " + prova.getDiaFase().getFase().getAreaconcurso().getNome());
+        int numFase = 0;
+        for (Fase fase : prova.getDiaFase().getFase().getAreaconcurso().getFases()) {
+            numFase++;
+            if (fase.getId() == prova.getDiaFase().getFase().getId()) {
+                break;
+            }
+        }
+        LabelFase.setText(numFase + "ª Fase");
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        LabelDiaFase.setText("Dia :" + format.format(prova.getDiaFase().getDataDia().getTime()));
+        this.carregarQuestoesMultipla();
+        this.carregarQuestoesDiscursivas();
+    }
+
+    public CRUDGabaritoProva(Concursando concursando, Prova prova) {
+        initComponents();
+        respostasProva = new CartaoResposta();
+        CartaoResposta c = new CartaoResposta();
+        c.setConcursando(concursando);
+        respostasProva = c;
+        this.prova = prova;
+        questoesMult = new ArrayList<QuestaoMultiplaEscolha>();
+        questoesDisc = new ArrayList<QuestaoDiscursiva>();
+        respostasProva.setProva(prova);
         for (Questao questao : prova.getQuestoes()) {
             if (questao instanceof QuestaoMultiplaEscolha) {
                 questoesMult.add((QuestaoMultiplaEscolha) questao);
@@ -98,7 +136,7 @@ public class CRUDGabaritoProva extends javax.swing.JFrame {
             modelo.setColumnIdentifiers(new String[]{"Alternativa", ""});
             for (Alternativa alternativa : questao.getAlternativas()) {
                 String x = "";
-                for (Alternativa a : gabarito.getAlternativas()) {
+                for (Alternativa a : respostasProva.getAlternativas()) {
                     if (a.getId() == alternativa.getId()) {
                         x = "X";
                     }
@@ -313,14 +351,14 @@ public class CRUDGabaritoProva extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (TableQuestoesMultipla.getSelectedRow() != -1) {
             if (TableAlternativas.getSelectedRow() != -1) {
-                for (Alternativa alternativa : gabarito.getAlternativas()) {
+                for (Alternativa alternativa : respostasProva.getAlternativas()) {
                     if (alternativa.getQuestao().getId() == questoesMult.get(TableQuestoesMultipla.getSelectedRow()).getAlternativas().get(TableAlternativas.getSelectedRow()).getQuestao().getId()) {
-                        gabarito.getAlternativas().remove(alternativa);
+                        respostasProva.getAlternativas().remove(alternativa);
                         break;
                     }
 
                 }
-                gabarito.getAlternativas().add(questoesMult.get(TableQuestoesMultipla.getSelectedRow()).getAlternativas().get(TableAlternativas.getSelectedRow()));
+                respostasProva.getAlternativas().add(questoesMult.get(TableQuestoesMultipla.getSelectedRow()).getAlternativas().get(TableAlternativas.getSelectedRow()));
             }
             this.carregarAlternativas(questoesMult.get(TableQuestoesMultipla.getSelectedRow()));
         }
@@ -332,7 +370,7 @@ public class CRUDGabaritoProva extends javax.swing.JFrame {
             // TODO add your handling code here:
             int qntdQuestoes = 0;
             for (QuestaoMultiplaEscolha quest : questoesMult) {
-                for (Alternativa alternativaGabarito : gabarito.getAlternativas()) {
+                for (Alternativa alternativaGabarito : respostasProva.getAlternativas()) {
                     if (alternativaGabarito.getQuestao().getId() == quest.getId()) {
                         qntdQuestoes++;
                     }
@@ -341,7 +379,11 @@ public class CRUDGabaritoProva extends javax.swing.JFrame {
             if (qntdQuestoes < questoesMult.size()) {
                 JOptionPane.showMessageDialog(rootPane, "Existe uma ou mais questões que não foram respondidas.");
             } else {
-                fachada.inserirGabarito(gabarito);
+                if (respostasProva instanceof Gabarito) {
+                    fachada.inserirGabarito((Gabarito) respostasProva);
+                } else {
+                    fachada.inserirCartaoResposta((CartaoResposta) respostasProva);
+                }
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());

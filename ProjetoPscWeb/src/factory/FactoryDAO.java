@@ -15,7 +15,7 @@ import daoImpl.FaseDAOImpl;
 import daoImpl.FuncionarioDAOImpl;
 import daoImpl.GabaritoDAOImpl;
 import daoImpl.GeneroDAOImpl;
-import daoImpl.LocaisFaseConcursoDAOImpl;
+
 import daoImpl.LocalDAOImpl;
 import daoImpl.ProvaDAOImpl;
 import daoImpl.QuestaoDiscursivaDAOImpl;
@@ -104,12 +104,6 @@ public class FactoryDAO {
         GeneroDAOImpl generoDAOImpl = new GeneroDAOImpl();
         generoDAOImpl.setManager(entityManager);
         return generoDAOImpl;
-    }
-
-    public static LocaisFaseConcursoDAOImpl getLocaisFaseConcursoDAOImpl() {
-        LocaisFaseConcursoDAOImpl locaisFaseConcurso = new LocaisFaseConcursoDAOImpl();
-        locaisFaseConcurso.setManager(entityManager);
-        return locaisFaseConcurso;
     }
 
     public static LocalDAOImpl getLocalDAOImpl() {

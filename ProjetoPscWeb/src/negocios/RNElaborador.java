@@ -38,4 +38,8 @@ public class RNElaborador extends RNPessoa {
 		dao = FactoryDAO.getElaboradorDAOImpl();
 	}
 
+    public void remover(Elaborador elaborador) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

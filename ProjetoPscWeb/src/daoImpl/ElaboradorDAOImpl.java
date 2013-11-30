@@ -33,6 +33,19 @@ public class ElaboradorDAOImpl extends GenericDAOImpl<Elaborador> implements IEl
 			throw new Exception(ex.getMessage());
 		}
 	}
+        
+        
+//        public void remover(Elaborador entidade) throws Exception {
+//		// TODO Auto-generated method stub
+//		try {
+//			this.getManager().getTransaction().begin();
+//			this.getManager().merge(entidade);
+//			this.getManager().getTransaction().commit();
+//		} catch (Exception ex) {
+//			this.getManager().getTransaction().rollback();
+//			throw new Exception(ex.getMessage());
+//		}
+//	}
 
 	@Override
 	public void remover(long id) throws Exception {
@@ -66,5 +79,7 @@ public class ElaboradorDAOImpl extends GenericDAOImpl<Elaborador> implements IEl
 		Elaborador e = this.getManager().find(Elaborador.class, new Long(id));
 		return e;
 	}
+
+    
 
 }

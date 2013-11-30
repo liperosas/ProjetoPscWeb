@@ -10,6 +10,6 @@ public interface IConcursandoDAO extends IGenericDAO<Concursando>{
 
 	Concursando logarConcursando(String Login, String senha);
 	
-	List<Concursando> classificarConcursandos(Fase fase) throws Exception;
+	List<Concursando> calcularNotaMultiplaConcursandos(Fase fase) throws Exception;
 	
 }

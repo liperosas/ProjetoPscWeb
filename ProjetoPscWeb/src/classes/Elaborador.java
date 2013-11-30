@@ -18,6 +18,8 @@ import org.hibernate.annotations.CascadeType;
 public class Elaborador extends Pessoa {
     @Column(nullable=false)
 	private String formacao;
+        
+        private int status;
 
 	@OneToMany(mappedBy = "elaborador", fetch = FetchType.LAZY)
 	@Cascade(CascadeType.ALL)
@@ -41,7 +43,7 @@ public class Elaborador extends Pessoa {
 
 	public Elaborador(int id, String nome, String cpf, String rg,
 			String titulo, String telefone, String celular, Endereco endereco,
-			String formacao, List<Questao> questoes) {
+			String formacao, List<Questao> questoes, int status) {
 		super(id, nome, cpf, rg, titulo, telefone, celular, endereco);
 		// TODO Auto-generated constructor stub
 	}
@@ -49,5 +51,21 @@ public class Elaborador extends Pessoa {
 	public Elaborador() {
 		// TODO Auto-generated constructor stub
 	}
+
+   
+
+    /**
+     * @return the status
+     */
+    public int getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
 }

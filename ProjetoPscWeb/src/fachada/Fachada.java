@@ -174,9 +174,9 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public List<Concursando> classificarConcursandos(Fase fase)
+    public List<Concursando> calcularNotaMultiplaConcursandos(Fase fase)
             throws Exception {
-        return rnConcursando.classificarConcursandos(fase);
+        return rnConcursando.calcularNotaMultiplaConcursandos(fase);
     }
 
     @Override
@@ -299,7 +299,8 @@ public class Fachada implements IFachada {
     public void removerElaborador(long id) throws Exception {
         rnElaborador.remover(id);
     }
-
+   
+    
     @Override
     public Elaborador consultarElaboradorPorId(long id) throws Exception {
         return rnElaborador.consultarPorId(id);
@@ -545,4 +546,11 @@ public class Fachada implements IFachada {
     public List<Gabarito> consultarGabaritoProva(long id_prova) throws Exception {
         return rnGabarito.consultarGabaritoProva(id_prova);
     }
+
+    @Override
+    public List<CartaoResposta> consultarCartoesRespostaConcursandoProva(Prova prova, Concursando concursando) throws Exception {
+        return rnConcursando.consultarCartoesRespostaConcursandoProva(prova, concursando);
+    }
+
+   
 }
