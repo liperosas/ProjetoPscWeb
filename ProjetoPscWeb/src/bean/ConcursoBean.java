@@ -1,6 +1,7 @@
 package bean;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -33,13 +34,21 @@ public class ConcursoBean {
 
 	public ConcursoBean() {
 		concursos = new ArrayList<Concurso>();
+		List<Concurso> c = new ArrayList<Concurso>();
 		try {
-			concursos = fachada.consultarTodosConcurso();
+			c = fachada.consultarTodosConcurso();
+			for (Concurso con : c)
+			{
+				if (con.getDatainscricao().after(Calendar.getInstance()) && con.getDatafinal().before(Calendar.getInstance())){
+					concursos.add(con);
+				}
+			}
 			if (concursos.size() <= 0){
 				FacesContext.getCurrentInstance().addMessage("mensagem", new FacesMessage(FacesMessage.SEVERITY_WARN,"AVISO: Não há concursos vigentes","Concursos"));
 				FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 				FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml?faces-redirect=true");
 			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
