@@ -15,7 +15,7 @@
 		</p:layoutUnit>
 		<p:layoutUnit position="center">
 			<h:form id="form">
-				<p:growl id="messages" showDetail="true" />
+				<p:growl closable="true" id="messages" for="messages" />  
 				<b style="color: red;">#{concursandoBean.mensagem}</b>
 				<p:dataTable var="areaConcurso"
 					value="#{areaConcursoBean.areasConcurso}"
@@ -33,7 +33,7 @@
 					<p:column headerText="Visualizar Áreas do Concurso">
 						<p:commandButton id="areasConcurso"
 							action="#{areaConcursoBean.cadastrarConcursandoArea}"
-							style="margin-right:20px;" ajax="false" value="Cadastrar-se">
+							style="margin-right:20px;" ajax="false" value="Cadastrar-se" update="messages">
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
