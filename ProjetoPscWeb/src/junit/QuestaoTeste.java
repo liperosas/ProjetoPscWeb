@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.TestCase;
+import daoImpl.QuestaoDiscursivaDAOImpl;
+import daoImpl.QuestaoMultiplaDAOImpl;
 import classes.Alternativa;
 import classes.QuestaoDiscursiva;
 import classes.QuestaoMultiplaEscolha;
-import daoImpl.QuestaoDiscursivaDAOImpl;
-import daoImpl.QuestaoMultiplaDAOImpl;
 import fachada.Fachada;
 import fachada.IFachada;
 import factory.FactoryDAO;

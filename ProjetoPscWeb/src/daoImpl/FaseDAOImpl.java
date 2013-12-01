@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import classes.Fase;
 import dao.IFaseDAO;
+import classes.Fase;
 
 public class FaseDAOImpl extends GenericDAOImpl<Fase> implements IFaseDAO {
 

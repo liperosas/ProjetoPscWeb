@@ -1,9 +1,10 @@
 package daoImpl;
 
-import classes.Elaborador;
 import dao.IElaboradorDAO;
 import java.util.List;
 import javax.persistence.Query;
+
+import classes.Elaborador;
 
 public class ElaboradorDAOImpl extends GenericDAOImpl<Elaborador> implements IElaboradorDAO {
     

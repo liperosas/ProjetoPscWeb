@@ -25,9 +25,9 @@ import fachada.IFachada;
 public class ConcursoBean {
 
 	List<Concurso> concursos;
-	
+
 	Concurso concurso;
-	
+
 	DataTable tableConcursos;
 
 	IFachada fachada = Fachada.obterInstancia();
@@ -37,18 +37,27 @@ public class ConcursoBean {
 		List<Concurso> c = new ArrayList<Concurso>();
 		try {
 			c = fachada.consultarTodosConcurso();
-			for (Concurso con : c)
-			{
-				if (con.getDatainscricao().after(Calendar.getInstance()) && con.getDatafinal().before(Calendar.getInstance())){
-					concursos.add(con);
+			for (Concurso con : c) {
+				Calendar calendar = Calendar.getInstance();
+				if (con.getDatainscricao().before(calendar)) {
+					if (con.getDatafinal().after(Calendar.getInstance())) {
+						concursos.add(con);
+					}
 				}
 			}
-			if (concursos.size() <= 0){
-				FacesContext.getCurrentInstance().addMessage("mensagem", new FacesMessage(FacesMessage.SEVERITY_WARN,"AVISO: Não há concursos vigentes","Concursos"));
-				FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
-				FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml?faces-redirect=true");
+			if (concursos.size() <= 0) {
+				FacesContext.getCurrentInstance()
+						.addMessage(
+								"mensagem",
+								new FacesMessage(FacesMessage.SEVERITY_WARN,
+										"AVISO: Não há concursos vigentes",
+										"Concursos"));
+				FacesContext.getCurrentInstance().getExternalContext()
+						.getFlash().setKeepMessages(true);
+				FacesContext.getCurrentInstance().getExternalContext()
+						.redirect("index.xhtml?faces-redirect=true");
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,13 +65,17 @@ public class ConcursoBean {
 
 	}
 
-	public String listarAreasConcurso(){
+	public String listarAreasConcurso() {
 		concurso = (Concurso) tableConcursos.getSelection();
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("concurso", concurso);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, concurso.getNomeConcurso(), "Teste"));
-		return "listarAreasConcurso.xhmtl?faces-redirect=true";		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.put("concurso", concurso);
+		FacesContext.getCurrentInstance().addMessage(
+				null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, concurso
+						.getNomeConcurso(), "Teste"));
+		return "listarAreasConcurso.xhmtl?faces-redirect=true";
 	}
-	
+
 	/**
 	 * @return the concursos
 	 */
@@ -71,7 +84,8 @@ public class ConcursoBean {
 	}
 
 	/**
-	 * @param concursos the concursos to set
+	 * @param concursos
+	 *            the concursos to set
 	 */
 	public void setConcursos(List<Concurso> concursos) {
 		this.concursos = concursos;
@@ -85,7 +99,8 @@ public class ConcursoBean {
 	}
 
 	/**
-	 * @param concurso the concurso to set
+	 * @param concurso
+	 *            the concurso to set
 	 */
 	public void setConcurso(Concurso concurso) {
 		this.concurso = concurso;
@@ -99,7 +114,8 @@ public class ConcursoBean {
 	}
 
 	/**
-	 * @param tableConcursos the tableConcursos to set
+	 * @param tableConcursos
+	 *            the tableConcursos to set
 	 */
 	public void setTableConcursos(DataTable tableConcursos) {
 		this.tableConcursos = tableConcursos;

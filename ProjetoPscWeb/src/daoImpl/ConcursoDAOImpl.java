@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import classes.Concurso;
 import dao.IConcursoDAO;
+import classes.Concurso;
 
 public class ConcursoDAOImpl extends GenericDAOImpl<Concurso> implements IConcursoDAO {
 

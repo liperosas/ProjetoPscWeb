@@ -1,8 +1,9 @@
 package dao;
 
+import java.util.List;
+
 import classes.Genero;
 import classes.QuestaoDiscursiva;
-import java.util.List;
 
 public interface IQuestaoDiscussivaDAO extends IGenericDAO<QuestaoDiscursiva> {
 

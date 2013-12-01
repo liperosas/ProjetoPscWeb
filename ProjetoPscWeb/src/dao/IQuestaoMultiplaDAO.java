@@ -1,8 +1,9 @@
 package dao;
 
+import java.util.List;
+
 import classes.Genero;
 import classes.QuestaoMultiplaEscolha;
-import java.util.List;
 
 public interface IQuestaoMultiplaDAO extends IGenericDAO<QuestaoMultiplaEscolha>{
 

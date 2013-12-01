@@ -1,7 +1,8 @@
 package dao;
 
-import classes.Gabarito;
 import java.util.List;
+
+import classes.Gabarito;
 
 public interface IGabaritoDAO extends IGenericDAO<Gabarito>{
 

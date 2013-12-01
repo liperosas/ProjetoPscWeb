@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import classes.Prova;
 import dao.IProvaDAO;
+import classes.Prova;
 
 public class ProvaDAOImpl extends GenericDAOImpl<Prova> implements IProvaDAO {
 

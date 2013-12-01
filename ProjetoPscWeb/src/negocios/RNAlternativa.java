@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
-import classes.Alternativa;
 import daoImpl.AlternativaDAOImpl;
+import classes.Alternativa;
 import factory.FactoryDAO;
 
 public class RNAlternativa {

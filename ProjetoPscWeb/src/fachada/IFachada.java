@@ -1,18 +1,18 @@
 package fachada;
 
-import classes.Alternativa;
-import classes.AreaConcurso;
-import classes.CartaoResposta;
 
 import java.util.List;
 
+import classes.Alternativa;
+import classes.AreaConcurso;
+import classes.CartaoResposta;
 import classes.Concursando;
 import classes.Concurso;
 import classes.DiaFase;
 import classes.Elaborador;
-import classes.Funcionario;
 import classes.Empresa;
 import classes.Fase;
+import classes.Funcionario;
 import classes.Gabarito;
 import classes.Genero;
 import classes.Local;

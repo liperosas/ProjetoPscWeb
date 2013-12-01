@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import classes.Alternativa;
 import dao.IAlternativaDAO;
+import classes.Alternativa;
 
 public class AlternativaDAOImpl extends GenericDAOImpl<Alternativa> implements
         IAlternativaDAO {

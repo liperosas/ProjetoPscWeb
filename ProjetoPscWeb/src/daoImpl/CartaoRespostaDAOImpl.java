@@ -1,7 +1,8 @@
 package daoImpl;
 
-import classes.CartaoResposta;
 import dao.ICartaoRespostaDAO;
+import classes.CartaoResposta;
+
 import java.util.List;
 import javax.persistence.Query;
 

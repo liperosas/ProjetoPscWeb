@@ -4,8 +4,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import classes.Gabarito;
 import dao.IGabaritoDAO;
+import classes.Gabarito;
+
 import java.util.ArrayList;
 
 public class GabaritoDAOImpl extends GenericDAOImpl<Gabarito> implements IGabaritoDAO {

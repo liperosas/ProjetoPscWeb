@@ -1,12 +1,12 @@
 package daoImpl;
 
-import classes.Genero;
 import java.util.List;
 
 import javax.persistence.Query;
 
-import classes.QuestaoDiscursiva;
 import dao.IQuestaoDiscussivaDAO;
+import classes.Genero;
+import classes.QuestaoDiscursiva;
 
 public class QuestaoDiscursivaDAOImpl extends GenericDAOImpl<QuestaoDiscursiva> implements IQuestaoDiscussivaDAO {
 

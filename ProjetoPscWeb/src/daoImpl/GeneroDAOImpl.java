@@ -5,9 +5,9 @@ import java.util.List;
 import javax.persistence.Query;
 
 
-import classes.Genero;
 
 import dao.IGeneroDAO;
+import classes.Genero;
 
 public class GeneroDAOImpl extends GenericDAOImpl<Genero> implements IGeneroDAO {
     public GeneroDAOImpl(){}

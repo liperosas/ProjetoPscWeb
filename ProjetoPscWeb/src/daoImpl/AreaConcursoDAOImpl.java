@@ -4,8 +4,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-
 import classes.AreaConcurso;
+
+
 import dao.IAreaConcursoDAO;
 
 public class AreaConcursoDAOImpl extends GenericDAOImpl<AreaConcurso> implements IAreaConcursoDAO {

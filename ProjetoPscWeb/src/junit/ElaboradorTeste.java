@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.TestCase;
+import daoImpl.ElaboradorDAOImpl;
 import classes.Elaborador;
 import classes.Endereco;
-import daoImpl.ElaboradorDAOImpl;
 import fachada.Fachada;
 import fachada.IFachada;
 import factory.FactoryDAO;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import dao.IConcursandoDAO;
 import classes.Alternativa;
 import classes.AreaConcurso;
 import classes.CartaoResposta;
@@ -15,7 +16,6 @@ import classes.Fase;
 import classes.Gabarito;
 import classes.Prova;
 import classes.RespostasProva;
-import dao.IConcursandoDAO;
 import factory.FactoryDAO;
 
 public class ConcursandoDAOImpl extends GenericDAOImpl<Concursando> implements

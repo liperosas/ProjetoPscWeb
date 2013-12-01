@@ -1,5 +1,8 @@
 package fachada;
 
+
+import java.util.List;
+
 import classes.Alternativa;
 import classes.AreaConcurso;
 import classes.CartaoResposta;
@@ -16,8 +19,6 @@ import classes.Local;
 import classes.Prova;
 import classes.QuestaoDiscursiva;
 import classes.QuestaoMultiplaEscolha;
-
-import java.util.List;
 
 import negocios.RNAlternativa;
 import negocios.RNAreaConcurso;

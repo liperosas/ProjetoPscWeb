@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import classes.Funcionario;
 import dao.IFuncionarioDAO;
+import classes.Funcionario;
 
 public class FuncionarioDAOImpl extends GenericDAOImpl<Funcionario> implements
         IFuncionarioDAO {

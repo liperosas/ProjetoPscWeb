@@ -5,9 +5,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import dao.IEmpresaDAO;
 import classes.Empresa;
 import classes.Funcionario;
-import dao.IEmpresaDAO;
 
 public class EmpresaDAOImpl extends GenericDAOImpl<Empresa> implements IEmpresaDAO {
 

@@ -1,14 +1,14 @@
 package daoImpl;
 
-import classes.Genero;
-import classes.QuestaoDiscursiva;
 import java.util.List;
 
 import javax.persistence.Query;
 
 
-import classes.QuestaoMultiplaEscolha;
 import dao.IQuestaoMultiplaDAO;
+import classes.Genero;
+import classes.QuestaoDiscursiva;
+import classes.QuestaoMultiplaEscolha;
 
 public class QuestaoMultiplaDAOImpl extends GenericDAOImpl<QuestaoMultiplaEscolha> implements IQuestaoMultiplaDAO {
 

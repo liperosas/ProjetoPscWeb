@@ -5,8 +5,8 @@ import java.util.List;
 import javax.persistence.Query;
 
 
-import classes.Local;
 import dao.ILocalDAO;
+import classes.Local;
 
 public class LocalDAOImpl extends GenericDAOImpl<Local> implements ILocalDAO {
     public LocalDAOImpl(){}
