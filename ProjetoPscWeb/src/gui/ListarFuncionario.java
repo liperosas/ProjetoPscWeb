@@ -415,7 +415,7 @@ public class ListarFuncionario extends javax.swing.JFrame {
     private void buttonRemoverFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverFuncionarioActionPerformed
         // TODO add your handling code here:
        if(tableFuncionario.getSelectedRow()==-1){
-       JOptionPane.showMessageDialog(rootPane, "Selecione um funcionário para remover");
+       JOptionPane.showMessageDialog(rootPane, "Selecione um funcionario para remover");
        }else{
         Funcionario funcionario = new Funcionario();
         try {
@@ -433,7 +433,7 @@ public class ListarFuncionario extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
        if(tableFuncionario.getSelectedRow()==-1){
-       JOptionPane.showMessageDialog(rootPane, "Selecione um funcionário para alterar");
+       JOptionPane.showMessageDialog(rootPane, "Selecione um funcionario para alterar");
        }else{
         Funcionario funcionario = new Funcionario();
         try {
@@ -557,8 +557,8 @@ public class ListarFuncionario extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispõe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessário\n.Dúvidas ligue para fone:Telefone de Antônio ");
+        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
+            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     /**

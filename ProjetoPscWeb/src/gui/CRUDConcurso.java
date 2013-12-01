@@ -150,9 +150,9 @@ public class CRUDConcurso extends javax.swing.JFrame {
 
         jLabel1.setText("Empresa");
 
-        jLabel2.setText("Áreas do Concurso");
+        jLabel2.setText("Areas do Concurso");
 
-        jButton4.setText("Alterar Área");
+        jButton4.setText("Alterar Area");
         jButton4.setToolTipText("");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +160,7 @@ public class CRUDConcurso extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Remover Área");
+        jButton5.setText("Remover Area");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -181,7 +181,7 @@ public class CRUDConcurso extends javax.swing.JFrame {
         TableListarAreaConcurso.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(TableListarAreaConcurso);
 
-        jButton6.setText("Cadastrar Área");
+        jButton6.setText("Cadastrar Area");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -212,9 +212,9 @@ public class CRUDConcurso extends javax.swing.JFrame {
         TextDataFinal.setText("20/12/2013");
         TextDataFinal.setToolTipText("");
 
-        jLabel4.setText("Data do início das inscrições");
+        jLabel4.setText("Data do inicio das inscricoes");
 
-        jLabel5.setText("Data do encerramento das inscrições");
+        jLabel5.setText("Data do encerramento das inscricoes");
 
         jMenu1.setText("Menu");
 
@@ -584,7 +584,7 @@ public class CRUDConcurso extends javax.swing.JFrame {
             List<Empresa> empresas = new ArrayList<Empresa>();
             empresas = fachada.consultarTodosEmpresa();
             if (empresas.size() <= 0) {
-                JOptionPane.showMessageDialog(rootPane, "Não há empresas cadastradas, cadastre uma empresa para prosseguir");
+                JOptionPane.showMessageDialog(rootPane, "Não ha empresas cadastradas, cadastre uma empresa para prosseguir");
                 this.dispose();
             }
         } catch (Exception ex) {
@@ -696,8 +696,8 @@ public class CRUDConcurso extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane, "'EOC' Empresa Organizadora de Concurso\n dispõe de diversas ferramentas de gerenciamento\n"
-                + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessário\n.Dúvidas ligue para fone:Telefone de Antônio ");
+        JOptionPane.showMessageDialog(rootPane, "'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
+            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     /**

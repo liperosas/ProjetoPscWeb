@@ -61,7 +61,7 @@ public class ListaClassificacao extends javax.swing.JFrame {
 
     public void carregarListaConcursandos() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"Colocação", "Nome", "Media"});
+        modelo.setColumnIdentifiers(new String[]{"Colocacao", "Nome", "Media"});
         int i = 0;
         for (Concursando concursando : concursandos) {
             DecimalFormat df = new DecimalFormat("#.##");           

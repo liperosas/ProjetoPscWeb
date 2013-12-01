@@ -62,7 +62,7 @@ public class CalcularNotasConcursandos extends javax.swing.JFrame {
     
     public void carregarListaConcursos() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"Nome do Concurso", "Empresa Patrocinadora", "Data das Inscrições", "Data do Encerramento"});
+        modelo.setColumnIdentifiers(new String[]{"Nome do Concurso", "Empresa Patrocinadora", "Data das Inscricoes", "Data do Encerramento"});
         for (Concurso concurso : concursos) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             modelo.addRow(new Object[]{concurso.getNomeConcurso(), concurso.getEmpresa().getNome(), sdf.format(concurso.getDatainscricao().getTime()), sdf.format(concurso.getDatafinal().getTime())});
@@ -136,7 +136,7 @@ public class CalcularNotasConcursandos extends javax.swing.JFrame {
             }
         });
 
-        ButtonIniciarCorrecao.setText("Iniciar Correção");
+        ButtonIniciarCorrecao.setText("Iniciar Correcao");
         ButtonIniciarCorrecao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonIniciarCorrecaoActionPerformed(evt);
@@ -439,7 +439,7 @@ public class CalcularNotasConcursandos extends javax.swing.JFrame {
     private void ButtonCadastrarCartRespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCadastrarCartRespActionPerformed
         // TODO add your handling code here:
           if(TableConcursos.getSelectedRow()==-1){
-          JOptionPane.showMessageDialog(rootPane, "Selecione o concurso para cadastrar o cartão resposta");
+          JOptionPane.showMessageDialog(rootPane, "Selecione o concurso para cadastrar o cartzo resposta");
           }else{
         ListarConcursandosFase lcf = new ListarConcursandosFase(fases.get(ComboFasesAreaConcurso.getSelectedIndex()));
         lcf.setVisible(true);
@@ -457,7 +457,7 @@ public class CalcularNotasConcursandos extends javax.swing.JFrame {
     private void ButtonIniciarCorrecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIniciarCorrecaoActionPerformed
         // TODO add your handling code here:
          if(TableConcursos.getSelectedRow()==-1){
-         JOptionPane.showMessageDialog(rootPane, "Selecione o concurso para iniciar a correção");
+         JOptionPane.showMessageDialog(rootPane, "Selecione o concurso para iniciar a correcao");
          }else{
         try{
            
@@ -582,8 +582,8 @@ public class CalcularNotasConcursandos extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispõe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessário\n.Dúvidas ligue para fone:Telefone de Antônio ");
+        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
+            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
     
     /**

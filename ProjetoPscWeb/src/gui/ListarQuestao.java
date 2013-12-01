@@ -42,7 +42,7 @@ public class ListarQuestao extends javax.swing.JFrame {
         try {
             questoesDiscursiva = (ArrayList<QuestaoDiscursiva>) fachada.consultarTodosQuestaoDiscursiva();
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new String[]{"Questão", "Referência", "Gênero"});
+            modelo.setColumnIdentifiers(new String[]{"Questao", "Referencia", "Genero"});
             for (QuestaoDiscursiva questDisc : questoesDiscursiva) {
                 modelo.addRow(new Object[]{questDisc.getTexto(), questDisc.getReferencia(), questDisc.getGenero().getGenero()});
             }
@@ -56,7 +56,7 @@ public class ListarQuestao extends javax.swing.JFrame {
         try {
             questoesMultiplaEscolha = (ArrayList<QuestaoMultiplaEscolha>) fachada.consultarTodosQuestaoMultiplaEscolha();
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new String[]{"Questão", "Referência", "Gênero"});
+            modelo.setColumnIdentifiers(new String[]{"Questao", "Referencia", "Genero"});
             for (QuestaoMultiplaEscolha questMult : questoesMultiplaEscolha) {
                 modelo.addRow(new Object[]{questMult.getTexto(), questMult.getReferencia(), questMult.getGenero().getGenero()});
             }
@@ -138,14 +138,14 @@ public class ListarQuestao extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TableListarQuestaoDiscursiva);
 
-        ButtonRemoverQuestaoDiscursiva.setText("Remover Questões Disc");
+        ButtonRemoverQuestaoDiscursiva.setText("Remover Questoes Disc");
         ButtonRemoverQuestaoDiscursiva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonRemoverQuestaoDiscursivaActionPerformed(evt);
             }
         });
 
-        ButtonAlterarQuestaoDiscursiva.setText("Alterar Questões Disc");
+        ButtonAlterarQuestaoDiscursiva.setText("Alterar Questoes Disc");
         ButtonAlterarQuestaoDiscursiva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonAlterarQuestaoDiscursivaActionPerformed(evt);
@@ -168,14 +168,14 @@ public class ListarQuestao extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setText("Lista de Questoes Multipla Escolha");
 
-        ButtonAlterarQuestaoMultiplaEscolha.setText("Alterar Questões Mult");
+        ButtonAlterarQuestaoMultiplaEscolha.setText("Alterar Questoes Mult");
         ButtonAlterarQuestaoMultiplaEscolha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonAlterarQuestaoMultiplaEscolhaActionPerformed(evt);
             }
         });
 
-        ButtonRemoverQuestaoMultiplaEscolha.setText("Remover Questões Mult");
+        ButtonRemoverQuestaoMultiplaEscolha.setText("Remover Questoes Mult");
         ButtonRemoverQuestaoMultiplaEscolha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonRemoverQuestaoMultiplaEscolhaActionPerformed(evt);
@@ -183,7 +183,8 @@ public class ListarQuestao extends javax.swing.JFrame {
         });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Cadastrar Questão");
+        jButton1.setText("Cadastrar Questao");
+        jButton1.setActionCommand("Cadastrar Questao");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -476,7 +477,7 @@ public class ListarQuestao extends javax.swing.JFrame {
     private void ButtonRemoverQuestaoMultiplaEscolhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRemoverQuestaoMultiplaEscolhaActionPerformed
         // TODO add your handling code here:
        if(TableListarQuestaoMultipla.getSelectedRow()==-1){
-       JOptionPane.showMessageDialog(rootPane, "Selecione uma Questão Multipla escolha para remover");
+       JOptionPane.showMessageDialog(rootPane, "Selecione uma Questao Multipla escolha para remover");
        }else{
         RemoverQuestaoMultiplaEscolha questaoMultiplaEscolha = new RemoverQuestaoMultiplaEscolha(this, questoesMultiplaEscolha.get(TableListarQuestaoMultipla.getSelectedRow()));
         questaoMultiplaEscolha.setVisible(true);
@@ -485,7 +486,7 @@ public class ListarQuestao extends javax.swing.JFrame {
     private void ButtonRemoverQuestaoDiscursivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRemoverQuestaoDiscursivaActionPerformed
         // TODO add your handling code here:
         if(TableListarQuestaoDiscursiva.getSelectedRow()==-1){
-       JOptionPane.showMessageDialog(rootPane, "Selecione uma Questão Discursiva escolha para remover");
+       JOptionPane.showMessageDialog(rootPane, "Selecione uma Questao Discursiva escolha para remover");
        }else{
         RemoverQuestaoDiscursiva questaoDiscursiva = new RemoverQuestaoDiscursiva(this, questoesDiscursiva.get(TableListarQuestaoDiscursiva.getSelectedRow()));
         questaoDiscursiva.setVisible(true);
@@ -494,7 +495,7 @@ public class ListarQuestao extends javax.swing.JFrame {
     private void ButtonAlterarQuestaoMultiplaEscolhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAlterarQuestaoMultiplaEscolhaActionPerformed
         // TODO add your handling code here:
        if(TableListarQuestaoMultipla.getSelectedRow()==-1){
-       JOptionPane.showMessageDialog(rootPane, "Selecione uma Questão Multipla escolha para Alterar");
+       JOptionPane.showMessageDialog(rootPane, "Selecione uma Questao Multipla escolha para Alterar");
        }else{
         AlterarQuestaoMultiplaEscolha altqM= new AlterarQuestaoMultiplaEscolha(this, questoesMultiplaEscolha.get(TableListarQuestaoMultipla.getSelectedRow()));
         altqM.setVisible(true);
@@ -503,7 +504,7 @@ public class ListarQuestao extends javax.swing.JFrame {
     private void ButtonAlterarQuestaoDiscursivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAlterarQuestaoDiscursivaActionPerformed
         // TODO add your handling code here:
         if(TableListarQuestaoDiscursiva.getSelectedRow()==-1){
-       JOptionPane.showMessageDialog(rootPane, "Selecione uma Questão Discursiva escolha para Alterar");
+       JOptionPane.showMessageDialog(rootPane, "Selecione uma Questao Discursiva escolha para Alterar");
        }else{
         AlterarQuestaoDiscursiva altqD= new AlterarQuestaoDiscursiva(this, questoesDiscursiva.get(TableListarQuestaoDiscursiva.getSelectedRow()));
         altqD.setVisible(true);
@@ -613,8 +614,8 @@ public class ListarQuestao extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispõe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessário\n.Dúvidas ligue para fone:Telefone de Antônio ");
+        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
+            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
     
 //    void setVisible(boolean b) {

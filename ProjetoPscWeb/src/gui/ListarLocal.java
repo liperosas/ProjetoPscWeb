@@ -28,7 +28,7 @@ public class ListarLocal extends javax.swing.JFrame {
      public void carregarTabelaLocal() {
         try {
             modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new Object[]{"Id","Nome", "UF", "Cidade", "Bairro", "Cep", "Logradouro", "Número", "Complemento"});
+            modelo.setColumnIdentifiers(new Object[]{"Id","Nome", "UF", "Cidade", "Bairro", "Cep", "Logradouro", "Numero", "Complemento"});
             ArrayList<Local> locais = new ArrayList<Local>();
             locais = (ArrayList<Local>) fachada.consultarTodosLocal();
             for (Local local : locais) {
@@ -552,8 +552,8 @@ public class ListarLocal extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispõe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessário\n.Dúvidas ligue para fone:Telefone de Antônio ");
+        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
+            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     /**

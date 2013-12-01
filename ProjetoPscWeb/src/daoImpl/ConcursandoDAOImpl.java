@@ -83,15 +83,15 @@ public class ConcursandoDAOImpl extends GenericDAOImpl<Concursando> implements
     }
 
     @Override
-    public List<Concursando> logarConcursando(String login, String senha) {
+    public Concursando logarConcursando(String login, String senha) {
         Query query = this
                 .getManager()
                 .createQuery(
                 "SELECT c FROM Concursando c where c.login = :login and c.senha = :senha");
         query.setParameter("login", login);
         query.setParameter("senha", senha);
-        List<Concursando> concursandos = query.getResultList();
-        return concursandos;
+        Concursando concursando = (Concursando) query.getSingleResult();
+        return concursando;
     }
 
     @Override

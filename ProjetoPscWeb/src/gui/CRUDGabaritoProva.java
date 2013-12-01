@@ -107,7 +107,7 @@ public class CRUDGabaritoProva extends javax.swing.JFrame {
     public void carregarQuestoesMultipla() {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new String[]{"Questão", "Referência"});
+            modelo.setColumnIdentifiers(new String[]{"Questao", "Referencia"});
             for (QuestaoMultiplaEscolha questMult : questoesMult) {
                 modelo.addRow(new Object[]{questMult.getTexto(), questMult.getReferencia()});
             }
@@ -120,7 +120,7 @@ public class CRUDGabaritoProva extends javax.swing.JFrame {
     public void carregarQuestoesDiscursivas() {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new String[]{"Questão", "Referência"});
+            modelo.setColumnIdentifiers(new String[]{"Questao", "Referencia"});
             for (QuestaoDiscursiva questDisc : questoesDisc) {
                 modelo.addRow(new Object[]{questDisc.getTexto(), questDisc.getReferencia()});
             }
@@ -378,7 +378,7 @@ public class CRUDGabaritoProva extends javax.swing.JFrame {
                 }
             }
             if (qntdQuestoes < questoesMult.size()) {
-                JOptionPane.showMessageDialog(rootPane, "Existe uma ou mais questões que não foram respondidas.");
+                JOptionPane.showMessageDialog(rootPane, "Existe uma ou mais questoes que nao foram respondidas.");
             } else {
                 if (respostasProva instanceof Gabarito) {
                     fachada.inserirGabarito((Gabarito) respostasProva);

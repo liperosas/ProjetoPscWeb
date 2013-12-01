@@ -450,7 +450,7 @@ public class ListarProva extends javax.swing.JFrame {
             if (TableListarProva.getSelectedRow() != -1) {
                 List<Gabarito> gabaritos = fachada.consultarGabaritoProva(provas.get(TableListarProva.getSelectedRow()).getId());
                 if (gabaritos.size() > 0) {
-                    if (JOptionPane.showConfirmDialog(rootPane, "Esta prova já possui um gabarito. \n Gostaria de altera-lo? ", "Alterar Gabarito", JOptionPane.YES_NO_OPTION) == 0) {
+                    if (JOptionPane.showConfirmDialog(rootPane, "Esta prova ja possui um gabarito. \n Gostaria de altera-lo? ", "Alterar Gabarito", JOptionPane.YES_NO_OPTION) == 0) {
                         AlterarGabaritoProva agp = new AlterarGabaritoProva(provas.get(TableListarProva.getSelectedRow()), gabaritos.get(0));
                         agp.setVisible(true);
                     }
@@ -568,8 +568,8 @@ public class ListarProva extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispõe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessário\n.Dúvidas ligue para fone:Telefone de Antônio ");
+        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
+            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     /**

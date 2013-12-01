@@ -99,7 +99,7 @@ public class CRUDProva extends javax.swing.JFrame {
         try {
 
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new String[]{"Questão", "Referência", "Gênero"});
+            modelo.setColumnIdentifiers(new String[]{"Questao", "Referencia", "Genero"});
             for (QuestaoMultiplaEscolha questMult : questoesMultiplaEscolha) {
                 modelo.addRow(new Object[]{questMult.getTexto(), questMult.getReferencia(), questMult.getGenero().getGenero()});
             }
@@ -113,7 +113,7 @@ public class CRUDProva extends javax.swing.JFrame {
         try {
 
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new String[]{"Questão", "Referência", "Gênero"});
+            modelo.setColumnIdentifiers(new String[]{"Questao", "Referencia", "Genero"});
             for (QuestaoDiscursiva questDisc : questoesDiscursiva) {
                 modelo.addRow(new Object[]{questDisc.getTexto(), questDisc.getReferencia(), questDisc.getGenero().getGenero()});
             }
@@ -126,7 +126,7 @@ public class CRUDProva extends javax.swing.JFrame {
     public void carregarListaQuestoesEscolhidas() {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new String[]{"Questão", "Referência", "Gênero"});
+            modelo.setColumnIdentifiers(new String[]{"Questao", "Referencia", "Genero"});
             for (Questao questao : questoesEscolhidas) {
                 modelo.addRow(new Object[]{questao.getTexto(), questao.getReferencia(), questao.getGenero().getGenero()});
             }
@@ -163,8 +163,8 @@ public class CRUDProva extends javax.swing.JFrame {
             provaPDF.add(new Paragraph("Matéria sendo Avaliada: " + fachada.consultarGeneroPorId(prova.getGenero().getId()).getGenero() + "                                      Data: " + formatoData.format(diaFase.getDataDia().getTime()).toString(), font));
             Paragraph nomeConcurso = new Paragraph(new Paragraph("Concurso " + diaFase.getFase().getAreaconcurso().getConcurso().getNomeConcurso(), font));
             nomeConcurso.setAlignment(Element.ALIGN_CENTER);
-            provaPDF.add(new Paragraph("Área do Concurso: " + diaFase.getFase().getAreaconcurso().getNome(), font));
-            provaPDF.add(new Paragraph("Início da Prova: " + formatoHora.format(diaFase.getHoraInicial().getTime()).toString() + "     Término da Prova: " + formatoHora.format(diaFase.getHoraFinal().getTime()).toString(), font));
+            provaPDF.add(new Paragraph("Area do Concurso: " + diaFase.getFase().getAreaconcurso().getNome(), font));
+            provaPDF.add(new Paragraph("Inicio da Prova: " + formatoHora.format(diaFase.getHoraInicial().getTime()).toString() + "     Termino da Prova: " + formatoHora.format(diaFase.getHoraFinal().getTime()).toString(), font));
             provaPDF.add(Chunk.NEWLINE);
             provaPDF.add(nomeConcurso);
             provaPDF.add(Chunk.NEWLINE);
@@ -811,8 +811,8 @@ public class CRUDProva extends javax.swing.JFrame {
             Genero genero = new Genero();
             genero.setId(codGeneros[ComboGeneroProva.getSelectedIndex()]);
 
-            int questMult = Integer.parseInt(JOptionPane.showInputDialog("Informe o número de questões de multipla escolha: "));
-            int questDisc = Integer.parseInt(JOptionPane.showInputDialog("Informe o número de questões discussivas escolha: "));
+            int questMult = Integer.parseInt(JOptionPane.showInputDialog("Informe o número de questoes de multipla escolha: "));
+            int questDisc = Integer.parseInt(JOptionPane.showInputDialog("Informe o número de questoes discussivas escolha: "));
             ArrayList<QuestaoDiscursiva> questoesDiscursivas = new ArrayList<QuestaoDiscursiva>();
             ArrayList<QuestaoMultiplaEscolha> questoesMultiplaEscolhas = new ArrayList<QuestaoMultiplaEscolha>();
             questoesDiscursivas = (ArrayList<QuestaoDiscursiva>) fachada.consultarTodosPorGeneroQuestaoDiscursiva(genero);
@@ -915,7 +915,7 @@ public class CRUDProva extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         if (TableQuestoesMultiplaEscolhaProva.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(rootPane, "Selecione a Questão multipla a ser inserida");
+            JOptionPane.showMessageDialog(rootPane, "Selecione a Questao multipla a ser inserida");
         } else {
 
             questoesEscolhidas.add(questoesMultiplaEscolha.get(TableQuestoesMultiplaEscolhaProva.getSelectedRow()));
@@ -927,7 +927,7 @@ public class CRUDProva extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         if (TableQuestoesDiscursivaProva.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(rootPane, "Selecione a Questão Discursiva a ser inserida");
+            JOptionPane.showMessageDialog(rootPane, "Selecione a Questao Discursiva a ser inserida");
         } else {
 
             questoesEscolhidas.add(questoesDiscursiva.get(TableQuestoesDiscursivaProva.getSelectedRow()));
@@ -939,7 +939,7 @@ public class CRUDProva extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         if (TableQuestoesEscolhidasprova.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(rootPane, "Selecione a Questão a ser descartada");
+            JOptionPane.showMessageDialog(rootPane, "Selecione a Questao a ser descartada");
         } else {
             Questao questao = new Questao();
             questao = questoesEscolhidas.get(TableQuestoesEscolhidasprova.getSelectedRow());
@@ -958,8 +958,8 @@ public class CRUDProva extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            if (ComboGeneroProva.getSelectedIndex() == -1) {
-                JOptionPane.showMessageDialog(rootPane, "Selecione Gênero");
+            if (ComboGeneroProva.getSelectedItem() == -1) {
+                JOptionPane.showMessageDialog(rootPane, "Selecione Genero");
                 finalize();
                 return;
             }
@@ -984,7 +984,7 @@ public class CRUDProva extends javax.swing.JFrame {
                 return;
             }
             if (textPesoMultiplaProva.getText().equals("")) {
-                JOptionPane.showMessageDialog(rootPane, "Peso Multipla está vazio, favor informar valor válido.");
+                JOptionPane.showMessageDialog(rootPane, "Peso Multiplo esta vazio, favor informar valor valido.");
                 return;
             }
 
@@ -992,7 +992,7 @@ public class CRUDProva extends javax.swing.JFrame {
             for (int i = 0; i < textPesoMultiplaProva.getText().length(); i++) {
                 char c = textPesoMultiplaProva.getText().charAt(i);
                 if (!Character.isDigit(c)) {
-                    JOptionPane.showMessageDialog(rootPane, "Peso da questao Multipla inválido");
+                    JOptionPane.showMessageDialog(rootPane, "Peso da questao Multipla invalido");
                     flag = true;
                     break;
                 }
@@ -1001,14 +1001,14 @@ public class CRUDProva extends javax.swing.JFrame {
             for (int i = 0; i < textPesoDiscursoProva.getText().length(); i++) {
                 char c = textPesoDiscursoProva.getText().charAt(i);
                 if (!Character.isDigit(c)) {
-                    JOptionPane.showMessageDialog(rootPane, "Peso da questao Discurso inválido");
+                    JOptionPane.showMessageDialog(rootPane, "Peso da questao Discurso invalido");
                     flag = true;
                     break;
                 }
             }
 
             if (questoesEscolhidas.size() == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Selecione questões para esta prova");
+                JOptionPane.showMessageDialog(rootPane, "Selecione questoes para esta prova");
                 return;
             }
             
@@ -1042,7 +1042,7 @@ public class CRUDProva extends javax.swing.JFrame {
             List<Concurso> concursos = new ArrayList<Concurso>();
             concursos = fachada.consultarTodosConcurso();
             if (concursos.size() <= 0) {
-                JOptionPane.showMessageDialog(rootPane, "Não há Concursos cadastrados, cadastre um concurso para prosseguir");
+                JOptionPane.showMessageDialog(rootPane, "Nao ha Concursos cadastrados, cadastre um concurso para prosseguir");
                 this.dispose();
     }//GEN-LAST:event_formWindowOpened
         } catch (Exception ex) {
@@ -1159,8 +1159,8 @@ public class CRUDProva extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane, "'EOC' Empresa Organizadora de Concurso\n dispõe de diversas ferramentas de gerenciamento\n"
-                + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessário\n.Dúvidas ligue para fone:Telefone de Antônio ");
+        JOptionPane.showMessageDialog(rootPane, "'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
+            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void ButtonLimparProvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLimparProvaActionPerformed

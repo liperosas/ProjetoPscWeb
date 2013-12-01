@@ -52,7 +52,7 @@ public interface IFachada {
 
 	List<Concursando> consultarTodosConcursando() throws Exception;
 
-	Concursando logarConcursando(String login, String senha) throws Exception;
+	Concursando logarConcrusando(String login, String senha) throws Exception;
 
 	List<Concursando> calcularNotaMultiplaConcursandos(Fase fase) throws Exception;
         

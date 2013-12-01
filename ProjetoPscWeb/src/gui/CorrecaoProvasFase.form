@@ -421,7 +421,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Qntd. Acertos de Quest&#xf5;es Multipla Escolha"/>
+        <Property name="text" type="java.lang.String" value="Qntd. Acertos de Questoes Multipla Escolha"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TextValorMultipla">
@@ -431,7 +431,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Qntd. Acertos de Quest&#xf5;es Discursivas"/>
+        <Property name="text" type="java.lang.String" value="Qntd. Acertos de Questoes Discursivas"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TextValorDiscursiva">

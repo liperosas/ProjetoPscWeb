@@ -111,7 +111,7 @@ public class AlterarGabaritoProva extends javax.swing.JFrame {
     public void carregarQuestoesMultipla() {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new String[]{"Questão", "Referência"});
+            modelo.setColumnIdentifiers(new String[]{"Questao", "Referencia"});
             for (QuestaoMultiplaEscolha questMult : questoesMult) {
                 modelo.addRow(new Object[]{questMult.getTexto(), questMult.getReferencia()});
             }
@@ -124,7 +124,7 @@ public class AlterarGabaritoProva extends javax.swing.JFrame {
     public void carregarQuestoesDiscursivas() {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new String[]{"Questão", "Referência"});
+            modelo.setColumnIdentifiers(new String[]{"Questao", "Referencia"});
             for (QuestaoDiscursiva questDisc : questoesDisc) {
                 modelo.addRow(new Object[]{questDisc.getTexto(), questDisc.getReferencia()});
             }
@@ -636,7 +636,7 @@ public class AlterarGabaritoProva extends javax.swing.JFrame {
                 }
             }
             if (qntdQuestoes < questoesMult.size()) {
-                JOptionPane.showMessageDialog(rootPane, "Existe uma ou mais questões que não foram respondidas.");
+                JOptionPane.showMessageDialog(rootPane, "Existe uma ou mais questoes que nao foram respondidas.");
             } else {
                 if (respostasProva instanceof Gabarito) {
                     fachada.atualizarGabarito((Gabarito) respostasProva);
@@ -770,8 +770,8 @@ public class AlterarGabaritoProva extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane, "'EOC' Empresa Organizadora de Concurso\n dispõe de diversas ferramentas de gerenciamento\n"
-                + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessário\n.Dúvidas ligue para fone:Telefone de Antônio ");
+        JOptionPane.showMessageDialog(rootPane, "'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
+            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     /**

@@ -22,13 +22,12 @@ public abstract class RNPessoa {
 			throw new Exception("CPF Inv�lido");
 		} else if (!validaTelefone(pessoa.getTelefone())) {
 			throw new Exception("Telefone inv�lido");
-		} /*
-		 * else if (!validaTelefone(pessoa.getCelular())) { throw new
-		 * Exception("Celular inv�lido"); }/* else if
-		 * (pessoa.getData_nasc().YEAR < 1900 || pessoa.getData_nasc().YEAR >
-		 * Calendar.getInstance().YEAR) { throw new
-		 * Exception("Data inv�lida"); }
-		 */else if (validarEndereco(pessoa.getEndereco())) {
+		} /*else if (!validaTelefone(pessoa.getCelular())) {
+			throw new Exception("Celular inv�lido");
+		}/* else if (pessoa.getData_nasc().YEAR < 1900
+				|| pessoa.getData_nasc().YEAR > Calendar.getInstance().YEAR) {
+			throw new Exception("Data inv�lida");
+		}*/ else if (validarEndereco(pessoa.getEndereco())) {
 			throw new Exception("Endereco inv�lido");
 		}
 
@@ -44,25 +43,22 @@ public abstract class RNPessoa {
 			throw new Exception("CPF Inv�lido");
 		} else if (!validaTelefone(pessoa.getTelefone())) {
 			throw new Exception("Telefone inv�lido");
-		/*} else if (pessoa.getCelular() != null && pessoa.getCelular() != "") {
-			if (!validaTelefone(pessoa.getCelular())) {
-				throw new Exception("Celular inv�lido");
-			}*/
-		}/*
-		 * else if (pessoa.getData_nasc().YEAR < 1900 ||
-		 * pessoa.getData_nasc().YEAR > Calendar.getInstance().YEAR) { throw new
-		 * Exception("Data inv�lida"); }
-		 */else if (validarEndereco(pessoa.getEndereco())) {
+		} else if (!validaTelefone(pessoa.getCelular())) {
+			throw new Exception("Celular inv�lido");
+		}/* else if (pessoa.getData_nasc().YEAR < 1900
+				|| pessoa.getData_nasc().YEAR > Calendar.getInstance().YEAR) {
+			throw new Exception("Data inv�lida");
+		}*/ else if (validarEndereco(pessoa.getEndereco())) {
 			throw new Exception("Endereco inv�lido");
 		}
 
 	}
-
-	public void validarRemover(long id) throws Exception {
-		if (id <= 0) {
+	
+	public void validarRemover(long id) throws Exception{
+		if (id <= 0){
 			throw new Exception("ID inv�lido");
 		}
-	}
+	}	
 
 	public boolean validaTelefone(String telefone) {
 		return telefone.matches("\\([0-9]{2}?\\)[0-9]{4}?\\-[0-9]{4}?");
@@ -71,11 +67,10 @@ public abstract class RNPessoa {
 	public boolean validarEndereco(Endereco endereco) throws Exception {
 		if (endereco.getBairro().equals("") || endereco.getBairro() == null) {
 			throw new Exception("Bairro inv�lido");
-		}/*
-		 * else if (validarCEP(endereco.getCep()) == false ||
-		 * endereco.getCep().equals("") || endereco.getCep() == null) { throw
-		 * new Exception("Cep inv�lido"); }
-		 */else if (endereco.getCidade().equals("")
+		}/* else if (validarCEP(endereco.getCep()) == false
+				|| endereco.getCep().equals("") || endereco.getCep() == null) {
+			throw new Exception("Cep inv�lido");
+		}*/ else if (endereco.getCidade().equals("")
 				|| endereco.getCidade() == null) {
 			throw new Exception("Cidade inv�lida");
 		} else if (endereco.getLogradouro().equals("")

@@ -590,7 +590,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Forma&#xe7;&#xe3;o"/>
+        <Property name="text" type="java.lang.String" value="Formacao"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textCidadeElaborador">

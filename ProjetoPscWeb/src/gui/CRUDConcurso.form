@@ -427,12 +427,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc1;reas do Concurso"/>
+        <Property name="text" type="java.lang.String" value="Areas do Concurso"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Alterar &#xc1;rea"/>
+        <Property name="text" type="java.lang.String" value="Alterar Area"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
@@ -441,7 +441,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Remover &#xc1;rea"/>
+        <Property name="text" type="java.lang.String" value="Remover Area"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
@@ -474,7 +474,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="jButton6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cadastrar &#xc1;rea"/>
+        <Property name="text" type="java.lang.String" value="Cadastrar Area"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
@@ -520,12 +520,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Data do in&#xed;cio das inscri&#xe7;&#xf5;es"/>
+        <Property name="text" type="java.lang.String" value="Data do inicio das inscricoes"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Data do encerramento das inscri&#xe7;&#xf5;es"/>
+        <Property name="text" type="java.lang.String" value="Data do encerramento das inscricoes"/>
       </Properties>
     </Component>
   </SubComponents>

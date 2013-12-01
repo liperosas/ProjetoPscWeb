@@ -157,7 +157,7 @@ public class RemoverQuestaoMultiplaEscolha extends javax.swing.JFrame {
         TableAlternativas.setEnabled(false);
         jScrollPane2.setViewportView(TableAlternativas);
 
-        jLabel4.setText("Referência");
+        jLabel4.setText("Referencia");
 
         textReferenciaQuestao.setEnabled(false);
 
@@ -459,9 +459,9 @@ public class RemoverQuestaoMultiplaEscolha extends javax.swing.JFrame {
     private void ButtonRemoverQuestaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRemoverQuestaoActionPerformed
         try {
             // TODO add your handling code here:
-            if (JOptionPane.showConfirmDialog(rootPane, "Você reamente quer Remover esta questão?", "Remover Questão", JOptionPane.YES_NO_OPTION) == 0) {
+            if (JOptionPane.showConfirmDialog(rootPane, "Voce reamente quer Remover esta questao?", "Remover Questao", JOptionPane.YES_NO_OPTION) == 0) {
                 fachada.removerQuestaoMultiplaEscolha(questaoMultipla.getId());
-                JOptionPane.showMessageDialog(rootPane, "Questão excluída com sucesso");
+                JOptionPane.showMessageDialog(rootPane, "Questao excluida com sucesso");
                 lquestao.carregarListaQuestoesMultiplaEscolha();
                 this.dispose();
             }
@@ -585,8 +585,8 @@ public class RemoverQuestaoMultiplaEscolha extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispõe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessário\n.Dúvidas ligue para fone:Telefone de Antônio ");
+        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
+            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     /**

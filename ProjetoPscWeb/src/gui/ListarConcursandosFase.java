@@ -64,7 +64,7 @@ public class ListarConcursandosFase extends javax.swing.JFrame {
 
     public void carregarListaProvasFase() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"Área de Conhecimento", "Data da Prova"});
+        modelo.setColumnIdentifiers(new String[]{"Area de Conhecimento", "Data da Prova"});
         for (Prova prova : provas) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             modelo.addRow(new Object[]{prova.getGenero().getGenero(), sdf.format(prova.getDiaFase().getDataDia().getTime())});
@@ -160,7 +160,7 @@ public class ListarConcursandosFase extends javax.swing.JFrame {
                 try {
                     List<CartaoResposta> cartoesResposta = fachada.consultarCartoesRespostaConcursandoProva(provas.get(TableProvasFase.getSelectedRow()), fase.getAreaconcurso().getConcursando().get(TableConcursandosFase.getSelectedRow()));
                     if (cartoesResposta.size() > 0) {
-                        if (JOptionPane.showConfirmDialog(rootPane, "Este concursando já possui um cartão resposta cadastrado para esta prova. \n Gostaria de altera-lo? ", "Alterar Cartao Resposta", JOptionPane.YES_NO_OPTION) == 0) {
+                        if (JOptionPane.showConfirmDialog(rootPane, "Este concursando ja possui um cartao resposta cadastrado para esta prova. \n Gostaria de altera-lo? ", "Alterar Cartao Resposta", JOptionPane.YES_NO_OPTION) == 0) {
                             AlterarGabaritoProva agp = new AlterarGabaritoProva(provas.get(TableConcursandosFase.getSelectedRow()), cartoesResposta.get(0));
                             agp.setVisible(true);
                         }

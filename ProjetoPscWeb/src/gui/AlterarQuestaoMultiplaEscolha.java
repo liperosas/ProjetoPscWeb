@@ -148,7 +148,7 @@ public class AlterarQuestaoMultiplaEscolha extends javax.swing.JFrame {
         textAreaTextoQuestao.setWrapStyleWord(true);
         jScrollPane1.setViewportView(textAreaTextoQuestao);
 
-        jLabel4.setText("Referência");
+        jLabel4.setText("Referencia");
 
         jLabel2.setText("Elaborador");
 
@@ -457,9 +457,9 @@ public class AlterarQuestaoMultiplaEscolha extends javax.swing.JFrame {
             questaoMultiplaEscolha.setReferencia(textReferenciaQuestao.getText());
             questaoMultiplaEscolha.setTexto(textAreaTextoQuestao.getText());
                                                   
-            if (JOptionPane.showConfirmDialog(rootPane, "Você reamente quer Atualizar esta questão?", "Atualizar Questão", JOptionPane.YES_NO_OPTION) == 0) {
+            if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente Atualizar esta questao?", "Atualizar Questao", JOptionPane.YES_NO_OPTION) == 0) {
                 fachada.atualizarQuestaoMultiplaEscolha(questaoMultiplaEscolha);
-                JOptionPane.showMessageDialog(rootPane, "Questão Atualiza com sucesso");
+                JOptionPane.showMessageDialog(rootPane, "Questao Atualiza com sucesso");
                 lquestao.carregarListaQuestoesMultiplaEscolha();
                this.dispose();
             }
@@ -583,8 +583,8 @@ public class AlterarQuestaoMultiplaEscolha extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispõe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessário\n.Dúvidas ligue para fone:Telefone de Antônio ");
+        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
+            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
     
    

@@ -1,8 +1,6 @@
 package negocios;
 
 import classes.CartaoResposta;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import classes.Concursando;
@@ -43,12 +41,11 @@ public class RNConcursando extends RNPessoa {
 
     public Concursando logarConcursando(String login, String senha)
             throws Exception {
-    	List<Concursando> concursandos = new ArrayList<Concursando>();
-        concursandos = dao.logarConcursando(login, senha);
-        if (concursandos.size() <= 0) {
+        Concursando concursando = dao.logarConcursando(login, senha);
+        if (concursando == null) {
             throw new Exception("Login ou Senha Inv�lidos");
         }
-        return concursandos.get(0);
+        return concursando;
     }
 
     public List<Concursando> calcularNotaMultiplaConcursandos(Fase fase) throws Exception {

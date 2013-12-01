@@ -94,7 +94,7 @@ public class ListarGenero extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel1.setText("Lista de Gêneros");
+        jLabel1.setText("Lista de Generos");
 
         TableGenero.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -406,7 +406,7 @@ public class ListarGenero extends javax.swing.JFrame {
     private void ButtonRemoverGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRemoverGeneroActionPerformed
         // TODO add your handling code here:
         if(TableGenero.getSelectedRow()==-1){
-       JOptionPane.showMessageDialog(rootPane, "Selecione um Gênero para Excluir");
+       JOptionPane.showMessageDialog(rootPane, "Selecione um Genero para Excluir");
        }else{
         Genero genero;//= new Genero();
         try {
@@ -424,7 +424,7 @@ public class ListarGenero extends javax.swing.JFrame {
     private void ButtonAlterarGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAlterarGeneroActionPerformed
         // TODO add your handling code here:
             if(TableGenero.getSelectedRow()==-1){
-       JOptionPane.showMessageDialog(rootPane, "Selecione um Gênero para Alterar");
+       JOptionPane.showMessageDialog(rootPane, "Selecione um Genero para Alterar");
        }else{
         Genero genero;//= new Genero();
         try {
@@ -549,8 +549,8 @@ public class ListarGenero extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispõe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessário\n.Dúvidas ligue para fone:Telefone de Antônio ");
+        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
+            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     /**

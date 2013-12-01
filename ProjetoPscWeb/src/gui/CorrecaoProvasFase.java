@@ -65,7 +65,7 @@ public class CorrecaoProvasFase extends javax.swing.JFrame {
 
     public void carregarListaProvasFase() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"Área de Conhecimento", "Data da Prova"});
+        modelo.setColumnIdentifiers(new String[]{"Area de Conhecimento", "Data da Prova"});
         for (Prova prova : provas) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             modelo.addRow(new Object[]{prova.getGenero().getGenero(), sdf.format(prova.getDiaFase().getDataDia().getTime())});
@@ -144,11 +144,11 @@ public class CorrecaoProvasFase extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TableConcursandosFase);
 
-        jLabel1.setText("Qntd. Acertos de Questões Multipla Escolha");
+        jLabel1.setText("Qntd. Acertos de Questoes Multipla Escolha");
 
         TextValorMultipla.setEditable(false);
 
-        jLabel2.setText("Qntd. Acertos de Questões Discursivas");
+        jLabel2.setText("Qntd. Acertos de Questoes Discursivas");
 
         TableProvasFase.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -622,8 +622,8 @@ public class CorrecaoProvasFase extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispõe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessário\n.Dúvidas ligue para fone:Telefone de Antônio ");
+        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
+            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
