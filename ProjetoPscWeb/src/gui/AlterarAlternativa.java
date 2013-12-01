@@ -17,12 +17,20 @@ public class AlterarAlternativa extends javax.swing.JFrame {
     CRUDQuestao crudq;
     Fachada fachada = Fachada.obterInstancia();
     int x;
+    AlterarQuestaoMultiplaEscolha aqme;
 
     public AlterarAlternativa(CRUDQuestao crudq, int x) {
         initComponents();
         this.crudq = crudq;
         this.x = x;
         jTextArea1.setText(crudq.questaoMultipla.getAlternativas().get(x).getTexto());
+    }
+
+    public AlterarAlternativa(AlterarQuestaoMultiplaEscolha aqme, int x) {
+        initComponents();
+        this.aqme = aqme;
+        this.x = x;
+        jTextArea1.setText(aqme.questaoMultiplaEscolha.getAlternativas().get(x).getTexto());
     }
 
     private AlterarAlternativa() {
@@ -363,9 +371,15 @@ public class AlterarAlternativa extends javax.swing.JFrame {
 
     private void ButtonAlterarAlternativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAlterarAlternativaActionPerformed
         // TODO add your handling code here:        
-        crudq.questaoMultipla.getAlternativas().get(x).setTexto(jTextArea1.getText());
-        crudq.carregarAlternativas();
-        this.dispose();
+        if (crudq != null) {
+            crudq.questaoMultipla.getAlternativas().get(x).setTexto(jTextArea1.getText());
+            crudq.carregarAlternativas();
+            this.dispose();
+        } else {
+            aqme.questaoMultiplaEscolha.getAlternativas().get(x).setTexto(jTextArea1.getText());
+            aqme.carregarAlternativas();
+            this.dispose();
+        }
     }//GEN-LAST:event_ButtonAlterarAlternativaActionPerformed
 
     private void ButtonCancelarAlternativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelarAlternativaActionPerformed
