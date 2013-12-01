@@ -385,6 +385,9 @@ public class CRUDGabaritoProva extends javax.swing.JFrame {
                 } else {
                     fachada.inserirCartaoResposta((CartaoResposta) respostasProva);
                 }
+                
+                JOptionPane.showMessageDialog(rootPane, "Respostas Cadastradas com Sucesso");
+                this.dispose();
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());

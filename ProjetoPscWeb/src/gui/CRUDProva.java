@@ -958,7 +958,7 @@ public class CRUDProva extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            if (ComboGeneroProva.getSelectedItem() == -1) {
+            if (ComboGeneroProva.getSelectedIndex() == -1) {
                 JOptionPane.showMessageDialog(rootPane, "Selecione Genero");
                 finalize();
                 return;

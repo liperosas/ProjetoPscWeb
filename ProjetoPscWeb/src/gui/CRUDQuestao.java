@@ -9,7 +9,6 @@ import classes.Elaborador;
 import classes.Genero;
 import classes.QuestaoDiscursiva;
 import classes.QuestaoMultiplaEscolha;
-import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 import fachada.Fachada;
 import java.util.ArrayList;
 import java.util.List;

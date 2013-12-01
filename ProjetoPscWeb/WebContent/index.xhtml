@@ -7,40 +7,37 @@
 <h:head>
 	<title>Bem Vindos Concursandos</title>
 </h:head>
-<h:body>
+<h:body>	
 	<p:layout fullPage="true">
 		<p:layoutUnit position="north" size="100">
+		<b>#{usuario}</b>
+		<p:growl closable="true" id="mensagem" for="mensagem" />
 		</p:layoutUnit>
 		<p:layoutUnit position="west" size="200">
-		<h:form>
-		<p:commandLink action="listarConcursos?faces-redirect=true" ajax="false">
-			<h:outputText value="Concursos" />
-		</p:commandLink>
-		</h:form>
+			<h:form>
+				<h:panelGrid columns="1">
+					<p:commandLink action="login?faces-redirect=true" ajax="false">
+						<h:outputText value="Realizar Login" />
+					</p:commandLink>
+					<p:commandLink action="listarConcursos?faces-redirect=true"
+						ajax="false">
+						<h:outputText value="Concursos" />
+					</p:commandLink>
+					<p:commandLink action="cadastrarConcursando?faces-redirect=true"
+						ajax="false">
+						<h:outputText value="Cadastre-se" />
+					</p:commandLink>
+					<p:commandLink action="listarClassificacao?faces-redirect=true"
+						ajax="false">
+						<h:outputText value="Classificação" />
+					</p:commandLink>
+					<p:commandLink action="informacao?faces-redirect=true" ajax="false">
+						<h:outputText value="Informação" />
+					</p:commandLink>
+				</h:panelGrid>
+			</h:form>
 		</p:layoutUnit>
 		<p:layoutUnit position="center">
-			<h:form id="formLogin">
-				<p:panel id="panelLogin" header="Login" style="width:450px;">
-					<p:messages id="error" />
-					<b style="color: red;">#{concursandoBean.mensagem}</b>
-					<h:panelGrid columns="3">
-						<h:outputLabel for="login" value="CPF:" style="font-weight:bold" />
-						<p:inputText id="login"
-							value="#{concursandoBean.concursando.login}" required="true"
-							requiredMessage="Informe um Login válido" />
-						<br />
-						<h:outputLabel for="senha" value="Senha:" style="font-weight:bold" />
-						<p:inputText id="senha"
-							value="#{concursandoBean.concursando.senha}" required="true"
-							requiredMessage="Informe uma Senha válida" />
-						<br />
-						<p:commandButton value="Fazer Login"
-							action="#{concursandoBean.efetuarLogin}" ajax="false" />
-					</h:panelGrid>
-				</p:panel>
-			</h:form>
-
-			<h:link outcome="cadastrarConcursando" value="Cadastre-se" />
 		</p:layoutUnit>
 	</p:layout>
 </h:body>

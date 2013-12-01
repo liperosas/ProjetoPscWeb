@@ -402,7 +402,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Data do encerramento das inscri&#xe7;&#xf5;es"/>
+        <Property name="text" type="java.lang.String" value="Data do encerramento das inscricoes"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TextDataFinal">
@@ -412,7 +412,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Data do in&#xed;cio das inscri&#xe7;&#xf5;es"/>
+        <Property name="text" type="java.lang.String" value="Data do inicio das inscricoes"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TextDataInicio">

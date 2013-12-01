@@ -12,10 +12,32 @@
 		<p:layoutUnit position="north" size="100">
 		</p:layoutUnit>
 		<p:layoutUnit position="west" size="200">
+			<h:form>
+				<h:panelGrid columns="1">
+					<p:commandLink action="login?faces-redirect=true" ajax="false">
+						<h:outputText value="Realizar Login" />
+					</p:commandLink>
+					<p:commandLink action="listarConcursos?faces-redirect=true"
+						ajax="false">
+						<h:outputText value="Concursos" />
+					</p:commandLink>
+					<p:commandLink action="cadastrarConcursando?faces-redirect=true"
+						ajax="false">
+						<h:outputText value="Cadastre-se" />
+					</p:commandLink>
+					<p:commandLink action="listarClassificacao?faces-redirect=true"
+						ajax="false">
+						<h:outputText value="Classificação" />
+					</p:commandLink>
+					<p:commandLink action="informacao?faces-redirect=true" ajax="false">
+						<h:outputText value="Informação" />
+					</p:commandLink>
+				</h:panelGrid>
+			</h:form>
 		</p:layoutUnit>
 		<p:layoutUnit position="center">
 			<h:form id="form">
-				<p:growl closable="true" id="messages" for="messages" />  
+				<p:growl closable="true" id="messages" for="messages" />
 				<b style="color: red;">#{concursandoBean.mensagem}</b>
 				<p:dataTable var="areaConcurso"
 					value="#{areaConcursoBean.areasConcurso}"
@@ -33,7 +55,8 @@
 					<p:column headerText="Visualizar Áreas do Concurso">
 						<p:commandButton id="areasConcurso"
 							action="#{areaConcursoBean.cadastrarConcursandoArea}"
-							style="margin-right:20px;" ajax="false" value="Cadastrar-se" update="messages">
+							style="margin-right:20px;" ajax="false" value="Cadastrar-se"
+							update="messages">
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>

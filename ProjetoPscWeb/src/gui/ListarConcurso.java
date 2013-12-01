@@ -425,8 +425,6 @@ public class ListarConcurso extends javax.swing.JFrame {
         try {
             int codigo = TabelaListarConcurso.getSelectedRow();
             concurso = fachada.consultarConcursoPorId(Long.parseLong(TabelaListarConcurso.getValueAt(codigo, 0).toString()));
-            AlterarConcurso altC= new AlterarConcurso(concurso, this);
-            altC.setVisible(true);
             
             this.carregarTabelaConcurso();
         } catch (Exception ex) {
