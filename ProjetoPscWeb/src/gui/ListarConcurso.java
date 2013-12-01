@@ -92,6 +92,7 @@ public class ListarConcurso extends javax.swing.JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         buttonRemoverConcurso.setText("Remover");
         buttonRemoverConcurso.addActionListener(new java.awt.event.ActionListener() {

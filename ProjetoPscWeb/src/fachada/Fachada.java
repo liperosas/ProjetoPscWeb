@@ -168,7 +168,7 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public Concursando logarConcrusando(String login, String senha)
+    public Concursando logarConcursando(String login, String senha)
             throws Exception {
         return rnConcursando.logarConcursando(login, senha);
     }

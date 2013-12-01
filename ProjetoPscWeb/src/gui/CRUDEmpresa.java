@@ -95,6 +95,7 @@ public class CRUDEmpresa extends javax.swing.JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Nome");
 

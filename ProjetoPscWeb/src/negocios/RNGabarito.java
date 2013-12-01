@@ -22,11 +22,17 @@ public class RNGabarito {
     }
 
     public void inserir(Gabarito gabarito) throws Exception {
+        if (gabarito.getProva() == null) {
+            throw new Exception("Não é possível cadastrar gabarito sem prova.");
+        }
         dao.inserir(gabarito);
 
     }
 
     public void atualizar(Gabarito gabarito) throws Exception {
+        if (gabarito.getProva() == null) {
+            throw new Exception("Não é possível alterar gabarito sem prova.");
+        }
         dao.atualizar(gabarito);
     }
 
@@ -47,7 +53,7 @@ public class RNGabarito {
     public List<Gabarito> consultarTodos() throws Exception {
         return dao.consultarTodos();
     }
-    
+
     public List<Gabarito> consultarGabaritoProva(long id_prova) throws Exception {
         return dao.consultarGabaritoProva(id_prova);
     }

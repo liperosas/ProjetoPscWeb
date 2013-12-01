@@ -109,6 +109,7 @@ public class CRUDElaborador extends javax.swing.JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         buttonCancelarElaborador.setText("Cancelar");
         buttonCancelarElaborador.addActionListener(new java.awt.event.ActionListener() {

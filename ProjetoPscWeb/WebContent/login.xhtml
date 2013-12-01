@@ -10,13 +10,18 @@
 <h:body>
 	<p:layout fullPage="true">
 		<p:layoutUnit position="north" size="100">
-		<b>Bem Vindo: #{concursandoBean.concursando.login}</b>
+			<b>#{usuario}</b>
 		</p:layoutUnit>
 		<p:layoutUnit position="south" size="100">
 			<h:outputText value="Bottom content." />
 		</p:layoutUnit>
 		<p:layoutUnit position="west" size="200">
-			<h:outputText value="Left content" />
+			<h:form>
+				<p:commandLink action="listarConcursos?faces-redirect=true"
+					ajax="false">
+					<h:outputText value="Concursos" />
+				</p:commandLink>
+			</h:form>
 		</p:layoutUnit>
 		<p:layoutUnit position="center">
 		</p:layoutUnit>

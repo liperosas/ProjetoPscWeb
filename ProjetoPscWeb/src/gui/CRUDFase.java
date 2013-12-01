@@ -36,7 +36,7 @@ public class CRUDFase extends javax.swing.JFrame {
     ArrayList<DiaFase> dias_fase = new ArrayList<DiaFase>();
     boolean alterar = false;
     int posicao = 0;
-    long[]codLocal;
+    long[] codLocal;
 
     public CRUDFase(CRUDAreaConcurso crudac) {
         initComponents();
@@ -468,12 +468,12 @@ public class CRUDFase extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             if (alterar) {
-               for (DiaFase df : fase.getDiasFase()) {
+                for (DiaFase df : fase.getDiasFase()) {
                     df.setFase(fase);
                 }
                 crudac.fases.get(posicao).setDiasFase(fase.getDiasFase());
                 crudac.fases.get(posicao).getLocal().setId((codLocal[comboLocalFase.getSelectedIndex()]));
-                crudac.carregarListaFases();                
+                crudac.carregarListaFases();
                 JOptionPane.showMessageDialog(this, "Fase Alterada com sucesso");
             } else {
                 for (DiaFase df : fase.getDiasFase()) {
@@ -484,9 +484,7 @@ public class CRUDFase extends javax.swing.JFrame {
                 crudac.carregarListaFases();
                 JOptionPane.showMessageDialog(this, "Fase Cadastrada com sucesso");
             }
-            
-                    
-            this.dispose();            
+            this.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
@@ -494,7 +492,6 @@ public class CRUDFase extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-
         try {
             if (TableListarDiaFase.getSelectedRow() != -1) {
                 fase.getDiasFase().remove(TableListarDiaFase.getSelectedRow());
@@ -503,10 +500,6 @@ public class CRUDFase extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Selecione Dia Fase para remover");
             }
-
-
-
-
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
@@ -523,7 +516,6 @@ public class CRUDFase extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");  
 //        }  
     }//GEN-LAST:event_jButton2ActionPerformed
-    
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:

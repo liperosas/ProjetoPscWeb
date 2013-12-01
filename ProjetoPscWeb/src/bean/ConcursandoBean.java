@@ -1,6 +1,7 @@
 package bean;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import classes.Concursando;
 import fachada.Fachada;
@@ -20,7 +21,9 @@ public class ConcursandoBean {
 
 	public String efetuarLogin() {
 		try {
-			concursando = fachada.logarConcrusando(concursando.getLogin(), concursando.getSenha());
+			concursando = fachada.logarConcursando(concursando.getLogin(), concursando.getSenha());
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", "Bem Vindo: " + concursando.getNome());
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("concursando", concursando);			
 			return "login.xhtml?faces-redirect=true";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

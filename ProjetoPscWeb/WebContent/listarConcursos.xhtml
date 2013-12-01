@@ -11,43 +11,32 @@
 	<p:layout fullPage="true">
 		<p:layoutUnit position="north" size="100">
 		</p:layoutUnit>
-		<p:layoutUnit position="south" size="100">
-		</p:layoutUnit>
 		<p:layoutUnit position="west" size="200">
 		</p:layoutUnit>
 		<p:layoutUnit position="center">
 			<h:form id="form">
-				<p:ring id="concursos" value="#{concursoBean.concursos}"
-					var="concurso" columns="3">
-					<p:outputPanel style="text-align:center">
-				#{concurso.nomeConcurso}"
-				<p:commandButton update=":form:detail" icon="ui-icon-search"
-							title="View" oncomplete="PF('dlg').show()">
-							<f:setPropertyActionListener value="#{concurso}"
-								target="#{concursoBean.selectedConcurso}" />
-						</p:commandButton>
-
-					</p:outputPanel>
-				</p:ring>
-				<p:dialog id="dialog" widgetVar="dlg" showEffect="fade"
-					hideEffect="fade" modal="true" width="125">
-
-					<p:outputPanel id="detail" style="text-align:center;"
-						layout="block">
-
-						<h:panelGrid columns="2" cellpadding="5"
-							rendered="#{not empty concursoBean.selectedConcurso}">
-
-							<h:outputText value="Name: " />
-							<h:outputText id="modelNo"
-								value="#{concursoBean.selectedConcurso.nomeConcurso}" />
-
-						</h:panelGrid>
-					</p:outputPanel>
-
-				</p:dialog>
+				<p:growl id="messages" showDetail="true" />
+				<p:dataTable var="concurso" value="#{concursoBean.concursos}"
+					selection="#{concursoBean.concurso}" rowKey="#{concurso.id}"
+					binding="#{concursoBean.tableConcursos}" selectionMode="single">
+					<p:column headerText="Nome do Concurso">
+						<h:outputText value="#{concurso.nomeConcurso}" />
+					</p:column>
+					<p:column headerText="Data do início das Inscrições">
+						<h:outputText value="#{concurso.datainscricao.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Data do término das Inscrições">
+						<h:outputText value="#{concurso.datafinal.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<f:facet name="footer">
+						<p:commandButton id="listarAreas" value="Areas deste Concurso" icon="ui-icon-search" action = "#{concursoBean.listarAreasConcurso}"  ajax="false"/>
+					</f:facet>
+				</p:dataTable>
 			</h:form>
-
 		</p:layoutUnit>
 	</p:layout>
 </h:body>

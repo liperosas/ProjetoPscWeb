@@ -99,6 +99,7 @@ public class AlterarQuestaoDiscursiva extends javax.swing.JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel4.setText("Referência");
 

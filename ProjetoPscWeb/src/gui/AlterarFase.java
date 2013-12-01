@@ -96,6 +96,7 @@ public class AlterarFase extends javax.swing.JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         ButtonAlterarFase.setText("Alterar");
         ButtonAlterarFase.addActionListener(new java.awt.event.ActionListener() {

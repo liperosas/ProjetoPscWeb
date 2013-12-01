@@ -84,6 +84,7 @@ public class CRUDDiaFase extends javax.swing.JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         ButtonSalvarDiaFase.setText("Salvar");
         ButtonSalvarDiaFase.addActionListener(new java.awt.event.ActionListener() {

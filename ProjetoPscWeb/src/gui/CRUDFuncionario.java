@@ -112,6 +112,7 @@ public class CRUDFuncionario extends javax.swing.JFrame {
         jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Nome");
 

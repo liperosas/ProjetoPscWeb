@@ -67,7 +67,8 @@ public class RemoverAlternativa extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem20 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);

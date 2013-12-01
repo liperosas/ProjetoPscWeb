@@ -17,14 +17,31 @@ public class RNFase {
     }
 
     public void inserir(Fase fase) throws Exception {
+        if (fase.getLocal() == null) {
+            throw new Exception("Escolha um local.");
+        } else if (fase.getDiasFase() == null) {
+            throw new Exception("Informe dia para a fase.");
+        } else if (fase.getAreaconcurso() == null) {
+            throw new Exception("Informe uma área de concurso para a fase");
+        }
         faseDAOImpl.inserir(fase);
     }
 
     public void remover(long id) throws Exception {
+        if (id <= 0) {
+            throw new Exception("Id inválido.");
+        }
         faseDAOImpl.remover(id);
     }
 
     public void atualizar(Fase fase) throws Exception {
+        if (fase.getLocal() == null) {
+            throw new Exception("Escolha um local.");
+        } else if (fase.getDiasFase() == null) {
+            throw new Exception("Informe dia para a fase.");
+        } else if (fase.getAreaconcurso() == null) {
+            throw new Exception("Informe uma área de concurso para a fase");
+        }
         faseDAOImpl.atualizar(fase);
     }
 

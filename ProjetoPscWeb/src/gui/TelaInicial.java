@@ -91,6 +91,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jMenuItem8.setText("jMenuItem8");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Bem Vindo");

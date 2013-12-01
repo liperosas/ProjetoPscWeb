@@ -103,7 +103,8 @@ public class AlterarLocal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem20 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel9.setText("Bairro");
 

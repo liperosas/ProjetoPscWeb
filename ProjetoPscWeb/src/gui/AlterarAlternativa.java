@@ -14,12 +14,10 @@ import javax.swing.JOptionPane;
  */
 public class AlterarAlternativa extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AlterarAlternativa
-     */
     CRUDQuestao crudq;
     Fachada fachada = Fachada.obterInstancia();
     int x;
+
     public AlterarAlternativa(CRUDQuestao crudq, int x) {
         initComponents();
         this.crudq = crudq;
@@ -79,7 +77,8 @@ public class AlterarAlternativa extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem20 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -376,104 +375,104 @@ public class AlterarAlternativa extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        CRUDProva crudP= new CRUDProva();
+        CRUDProva crudP = new CRUDProva();
         crudP.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        ListarProva ltsP= new ListarProva();
+        ListarProva ltsP = new ListarProva();
         ltsP.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        CRUDConcurso crudC= new CRUDConcurso(null);
+        CRUDConcurso crudC = new CRUDConcurso(null);
         crudC.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        ListarConcurso lstC= new ListarConcurso();
+        ListarConcurso lstC = new ListarConcurso();
         lstC.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
-        CRUDQuestao crudQ= new CRUDQuestao(null);
+        CRUDQuestao crudQ = new CRUDQuestao(null);
         crudQ.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         // TODO add your handling code here:
-        ListarQuestao listarq= new ListarQuestao();
+        ListarQuestao listarq = new ListarQuestao();
         listarq.setVisible(true);
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
-        CRUDGenero crudG= new CRUDGenero(null);
+        CRUDGenero crudG = new CRUDGenero(null);
         crudG.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
-        ListarGenero lstG= new ListarGenero();
+        ListarGenero lstG = new ListarGenero();
         lstG.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
-        CRUDLocal crudL= new CRUDLocal(null);
+        CRUDLocal crudL = new CRUDLocal(null);
         crudL.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
-        ListarLocal lst= new ListarLocal();
+        ListarLocal lst = new ListarLocal();
         lst.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
-        CRUDEmpresa crudE= new CRUDEmpresa(null);
+        CRUDEmpresa crudE = new CRUDEmpresa(null);
         crudE.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
-        ListarEmpresa lstE= new ListarEmpresa();
+        ListarEmpresa lstE = new ListarEmpresa();
         lstE.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
-        CRUDElaborador el= new CRUDElaborador(null);
+        CRUDElaborador el = new CRUDElaborador(null);
         el.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
-        ListarElaborador lstEl= new ListarElaborador();
+        ListarElaborador lstEl = new ListarElaborador();
         lstEl.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
-        CRUDFuncionario crudF= new CRUDFuncionario(null);
+        CRUDFuncionario crudF = new CRUDFuncionario(null);
         crudF.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
-        ListarFuncionario lstF= new ListarFuncionario();
+        ListarFuncionario lstF = new ListarFuncionario();
         lstF.setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        TelaInicial tl= new TelaInicial();
+        TelaInicial tl = new TelaInicial();
         tl.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -484,8 +483,8 @@ public class AlterarAlternativa extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispõe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessário\n.Dúvidas ligue para fone:Telefone de Antônio ");
+        JOptionPane.showMessageDialog(rootPane, "'EOC' Empresa Organizadora de Concurso\n dispõe de diversas ferramentas de gerenciamento\n"
+                + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessário\n.Dúvidas ligue para fone:Telefone de Antônio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     /**

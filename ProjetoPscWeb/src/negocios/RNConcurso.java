@@ -44,7 +44,7 @@ public class RNConcurso {
 							SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 							if (diaFase.getDataDia().getTime().equals(fase.getDiasFase().get(i).getDataDia())){
 								if (diaFase.getHoraFinal().HOUR < fase.getDiasFase().get(i).getHoraInicial().HOUR){
-									throw new Exception("A hora final da fase anterior atravessa a hora inicial da próxima fase.");
+									throw new Exception("A hora final da fase anterior atravessa a hora inicial da proxima fase.");
 								}
 							}
 						}
@@ -60,7 +60,7 @@ public class RNConcurso {
 					x++;
 					if (x > 1) {
 						throw new Exception(
-								"Duas Áreas possuem o mesmo nome, remova ou altere uma delas para prosseguir.");
+								"Duas Areas possuem o mesmo nome, remova ou altere uma delas para prosseguir.");
 					}
 				}
 			}

@@ -110,6 +110,7 @@ public class AlterarQuestaoMultiplaEscolha extends javax.swing.JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         ButtonRemoverQuestao.setText("Alterar");
         ButtonRemoverQuestao.addActionListener(new java.awt.event.ActionListener() {

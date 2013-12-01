@@ -180,6 +180,7 @@ public class CRUDGabaritoProva extends javax.swing.JFrame {
         TextAreaResposta = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         TableQuestoesMultipla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -90,7 +90,8 @@ public class RemoverProva extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem20 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         ButtonRemoverProva.setText("Remover");
         ButtonRemoverProva.addActionListener(new java.awt.event.ActionListener() {

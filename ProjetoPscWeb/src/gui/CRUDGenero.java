@@ -79,6 +79,7 @@ public class CRUDGenero extends javax.swing.JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         ButtonSalvarGenero.setText("Salvar");
         ButtonSalvarGenero.addActionListener(new java.awt.event.ActionListener() {

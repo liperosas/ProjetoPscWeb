@@ -18,15 +18,16 @@ public class RNProva {
     public void inserir(Prova prova) throws Exception {
         if (prova.getGenero() == null) {
             throw new Exception("G�nero de prova inv�lido!");
-        } else if (prova.getClass().equals("") || prova.getClass() == null) {
-            throw new Exception("Classe de prova inv�lida!");
         } else if (prova.getDiaFase().equals("") || prova.getDiaFase() == null) {
             throw new Exception("Fase de prova inv�lida!");
-        } else if (prova.getCartoesResposta().equals("") || prova.getCartoesResposta() == null) {
-            throw new Exception("Cart�o Resposta inv�lido!");
-        } else {
-            dao.inserir(prova);
+        } else if (prova.getQuestoes() == null) {
+            throw new Exception("Questões inválidas");
+        } else if (prova.getPesoMultipla() == 0) {
+            prova.setPesoMultipla(1);
+        } else if (prova.getPesoDiscursiva() == 0) {
+            prova.setPesoDiscursiva(1);
         }
+        dao.inserir(prova);
     }
 
     public void atualizar(Prova prova) throws Exception {
