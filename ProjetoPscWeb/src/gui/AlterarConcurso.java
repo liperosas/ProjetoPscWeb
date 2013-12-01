@@ -28,7 +28,7 @@ public class AlterarConcurso extends javax.swing.JFrame {
    long codigo;
    //long codigo2;
    ListarConcurso lstC;
-   ArrayList<AreaConcurso> areaConcursos = new ArrayList<>();
+   ArrayList<AreaConcurso> areaConcursos = new ArrayList<AreaConcurso>();
    long empresa;
    Concurso concurso= new Concurso();
     /**

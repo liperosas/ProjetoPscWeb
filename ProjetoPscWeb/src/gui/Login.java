@@ -18,13 +18,13 @@ import javax.swing.JOptionPane;
  *
  * @author RAFAELSANTIAGO
  */
-public class Loguin extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
      Fachada fachada = Fachada.obterInstancia();
      long[] codElaboradores;
     /**
      * Creates new form Loguin
      */
-    public Loguin() {
+    public Login() {
         initComponents();
         this.getContentPane().setBackground(Color.GRAY);
     }
@@ -124,8 +124,6 @@ public class Loguin extends javax.swing.JFrame {
        cpf=elaborador.getCpf();
        i++;
         if(cpf.equals(elaborador.getCpf())){
-        TelaInicialElaborador tl = new TelaInicialElaborador();
-        tl.setVisible(true);
        }else{
         TelaInicial ti=new TelaInicial();
         ti.setVisible(true);
@@ -155,20 +153,20 @@ public class Loguin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Loguin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Loguin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Loguin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Loguin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Loguin().setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }
