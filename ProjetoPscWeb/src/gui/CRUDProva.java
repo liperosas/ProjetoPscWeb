@@ -66,11 +66,6 @@ public class CRUDProva extends javax.swing.JFrame {
     public CRUDProva() {
         try {
             initComponents();
-            questoesMultiplaEscolha = (ArrayList<QuestaoMultiplaEscolha>) fachada.consultarTodosQuestaoMultiplaEscolha();
-            questoesDiscursiva = (ArrayList<QuestaoDiscursiva>) fachada.consultarTodosQuestaoDiscursiva();
-            this.carregarListaQuestoesMultiplaEscolha();
-            this.carregarListaQuestoesDiscursiva();
-
             generos = (ArrayList<Genero>) fachada.consultarTodosGenero();
             codGeneros = new long[generos.size()];
             int i = 0;
@@ -79,6 +74,10 @@ public class CRUDProva extends javax.swing.JFrame {
                 codGeneros[i] = genero.getId();
                 i++;
             }
+            questoesMultiplaEscolha = (ArrayList<QuestaoMultiplaEscolha>) fachada.consultarTodosPorGeneroQuestaoMultiplaEscolha(generos.get(ComboGeneroProva.getSelectedIndex()));
+            questoesDiscursiva = (ArrayList<QuestaoDiscursiva>) fachada.consultarTodosPorGeneroQuestaoDiscursiva(generos.get(ComboGeneroProva.getSelectedIndex()));
+            this.carregarListaQuestoesMultiplaEscolha();
+            this.carregarListaQuestoesDiscursiva();
             ArrayList<Concurso> concursos = new ArrayList<Concurso>();
             concursos = (ArrayList<Concurso>) fachada.consultarTodosConcurso();
             codConcurso = new long[concursos.size()];
@@ -90,6 +89,42 @@ public class CRUDProva extends javax.swing.JFrame {
                 i++;
             }
             ComboConcursoProva.setModel(boxModel);
+            Concurso concurso = new Concurso();
+            concurso = fachada.consultarConcursoPorId(codConcurso[ComboConcursoProva.getSelectedIndex()]);
+            codAreaConcurso = new long[concurso.getAreasConcurso().size()];
+            i = 0;
+            boxModel = new DefaultComboBoxModel();
+            for (AreaConcurso areaConcurso : concurso.getAreasConcurso()) {
+                boxModel.addElement(areaConcurso.getNome());
+                codAreaConcurso[i] = areaConcurso.getId();
+                i++;
+            }
+            ComboAreaConcursoProva.setModel(boxModel);
+            AreaConcurso areaConcurso = new AreaConcurso();
+            areaConcurso = fachada.consultarAreaConcursoPorId(codAreaConcurso[ComboAreaConcursoProva.getSelectedIndex()]);
+            codFase = new long[areaConcurso.getFases().size()];
+            i = 0;
+            int x = 1;
+            boxModel = new DefaultComboBoxModel();
+            for (Fase fase : areaConcurso.getFases()) {
+                boxModel.addElement(x + "ª Fase");
+                codFase[i] = fase.getId();
+                i++;
+                x++;
+            }
+            ComboFaseProva.setModel(boxModel);
+            Fase fase = new Fase();
+            fase = fachada.consultarFasePorId(codFase[ComboFaseProva.getSelectedIndex()]);
+            codDiaFase = new long[fase.getDiasFase().size()];
+            i = 0;
+            boxModel = new DefaultComboBoxModel();
+            for (DiaFase diafase : fase.getDiasFase()) {
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                boxModel.addElement(format.format(diafase.getDataDia().getTime()));
+                codDiaFase[i] = diafase.getId();
+                i++;
+            }
+            ComboDiaFaseProva.setModel(boxModel);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
@@ -175,12 +210,12 @@ public class CRUDProva extends javax.swing.JFrame {
                 if (questao.getReferencia() != null && !questao.getReferencia().trim().equals("")) {
                     referencia = "(" + questao.getReferencia() + ")";
                 }
-                provaPDF.add(new Paragraph(4, numQuestao++ + "ª) " + referencia + questao.getTexto(), font));
+                provaPDF.add(new Paragraph(15, numQuestao++ + "ª) " + referencia + questao.getTexto(), font));
                 if (questao instanceof QuestaoMultiplaEscolha) {
                     int i = 0;
                     QuestaoMultiplaEscolha questaoMultiplaEscolha = (QuestaoMultiplaEscolha) questao;
                     for (Alternativa alternativa : questaoMultiplaEscolha.getAlternativas()) {
-                        provaPDF.add(new Paragraph(letras.charAt(i) + ") " + alternativa.getTexto(), font));
+                        provaPDF.add(new Paragraph(15, letras.charAt(i) + ") " + alternativa.getTexto(), font));
                         i++;
                     }
                 } else if (questao instanceof QuestaoDiscursiva) {
@@ -302,6 +337,12 @@ public class CRUDProva extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Genero");
+
+        ComboGeneroProva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboGeneroProvaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Questoes Discursivas");
 
@@ -807,30 +848,51 @@ public class CRUDProva extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // TODO add your handling code here:
-            prova = new Prova();
-            Genero genero = new Genero();
-            genero.setId(codGeneros[ComboGeneroProva.getSelectedIndex()]);
+            if (fachada.consultarTodosQuestaoDiscursiva().size() <= 0 && fachada.consultarTodosQuestaoMultiplaEscolha().size() <= 0) {
+                JOptionPane.showMessageDialog(rootPane, "Nao existem questoes Cadastradas");
+            } else {
+                prova = new Prova();
+                Genero genero = new Genero();
+                genero.setId(codGeneros[ComboGeneroProva.getSelectedIndex()]);
+                ArrayList<QuestaoDiscursiva> questoesDiscursivas = new ArrayList<QuestaoDiscursiva>();
+                ArrayList<QuestaoMultiplaEscolha> questoesMultiplaEscolhas = new ArrayList<QuestaoMultiplaEscolha>();
+                questoesDiscursivas = (ArrayList<QuestaoDiscursiva>) fachada.consultarTodosPorGeneroQuestaoDiscursiva(genero);
+                questoesMultiplaEscolhas = (ArrayList<QuestaoMultiplaEscolha>) fachada.consultarTodosPorGeneroQuestaoMultiplaEscolha(genero);
+                int questMult = 0;
+                int questDisc = 0;
+                boolean teste = true;
+                while (teste) {
+                    teste = false;
+                    questMult = Integer.parseInt(JOptionPane.showInputDialog("Informe o número de questoes de multipla escolha: "));
+                    if (questMult > questoesMultiplaEscolhas.size()) {
+                        teste = true;
+                        JOptionPane.showMessageDialog(rootPane, "O número de Questões informado Excede o número de questões cadastradas com este gênero");
+                    }
+                }
+                teste = true;
+                while (teste) {
+                    teste = false;
+                    questDisc = Integer.parseInt(JOptionPane.showInputDialog("Informe o número de questoes discussivas escolha: "));
+                    if (questDisc > questoesDiscursivas.size()) {
+                        teste = true;
+                        JOptionPane.showMessageDialog(rootPane, "O número de Questões informado Excede o número de questões cadastradas com este gênero");
+                    }
+                }
+                for (int i = 0; i < questDisc; i++) {
+                    QuestaoDiscursiva questaoDiscursiva = new QuestaoDiscursiva();
+                    questaoDiscursiva = questoesDiscursivas.get(new Random().nextInt(questoesDiscursivas.size()));
+                    questoesDiscursivas.remove(questaoDiscursiva);
+                    prova.getQuestoes().add(questaoDiscursiva);
+                }
 
-            int questMult = Integer.parseInt(JOptionPane.showInputDialog("Informe o número de questoes de multipla escolha: "));
-            int questDisc = Integer.parseInt(JOptionPane.showInputDialog("Informe o número de questoes discussivas escolha: "));
-            ArrayList<QuestaoDiscursiva> questoesDiscursivas = new ArrayList<QuestaoDiscursiva>();
-            ArrayList<QuestaoMultiplaEscolha> questoesMultiplaEscolhas = new ArrayList<QuestaoMultiplaEscolha>();
-            questoesDiscursivas = (ArrayList<QuestaoDiscursiva>) fachada.consultarTodosPorGeneroQuestaoDiscursiva(genero);
-            questoesMultiplaEscolhas = (ArrayList<QuestaoMultiplaEscolha>) fachada.consultarTodosPorGeneroQuestaoMultiplaEscolha(genero);
-            for (int i = 0; i < questDisc; i++) {
-                QuestaoDiscursiva questaoDiscursiva = new QuestaoDiscursiva();
-                questaoDiscursiva = questoesDiscursivas.get(new Random().nextInt(questoesDiscursivas.size()));
-                questoesDiscursivas.remove(questaoDiscursiva);
-                prova.getQuestoes().add(questaoDiscursiva);
+                for (int i = 0; i < questMult; i++) {
+                    QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
+                    questaoMultiplaEscolha = questoesMultiplaEscolhas.get(new Random().nextInt(questoesMultiplaEscolhas.size()));
+                    questoesMultiplaEscolhas.remove(questaoMultiplaEscolha);
+                    prova.getQuestoes().add(questaoMultiplaEscolha);
+                }
+                this.gerarProva();
             }
-
-            for (int i = 0; i < questMult; i++) {
-                QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
-                questaoMultiplaEscolha = questoesMultiplaEscolhas.get(new Random().nextInt(questoesMultiplaEscolhas.size()));
-                questoesMultiplaEscolhas.remove(questaoMultiplaEscolha);
-                prova.getQuestoes().add(questaoMultiplaEscolha);
-            }
-            this.gerarProva();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
@@ -1011,7 +1073,7 @@ public class CRUDProva extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Selecione questoes para esta prova");
                 return;
             }
-            
+
             if (!flag) {
                 prova.setPesoMultipla(Integer.parseInt(textPesoMultiplaProva.getText()));
                 prova.setPesoDiscursiva(Integer.parseInt(textPesoDiscursoProva.getText()));
@@ -1160,13 +1222,28 @@ public class CRUDProva extends javax.swing.JFrame {
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(rootPane, "'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
+                + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void ButtonLimparProvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLimparProvaActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_ButtonLimparProvaActionPerformed
+
+    private void ComboGeneroProvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboGeneroProvaActionPerformed
+        try {
+            // TODO add your handling code here:
+
+            questoesMultiplaEscolha = (ArrayList<QuestaoMultiplaEscolha>) fachada.consultarTodosPorGeneroQuestaoMultiplaEscolha(generos.get(ComboGeneroProva.getSelectedIndex()));
+            questoesDiscursiva = (ArrayList<QuestaoDiscursiva>) fachada.consultarTodosPorGeneroQuestaoDiscursiva(generos.get(ComboGeneroProva.getSelectedIndex()));
+            questoesEscolhidas = new ArrayList<Questao>();
+            this.carregarListaQuestoesMultiplaEscolha();
+            this.carregarListaQuestoesDiscursiva();
+            this.carregarListaQuestoesEscolhidas();
+        } catch (Exception ex) {
+            Logger.getLogger(CRUDProva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ComboGeneroProvaActionPerformed
 
     /**
      * @param args the command line arguments

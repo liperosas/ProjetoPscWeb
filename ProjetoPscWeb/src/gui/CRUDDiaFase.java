@@ -45,9 +45,9 @@ public class CRUDDiaFase extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        textHoraInicial = new javax.swing.JTextField();
-        textHoraFinal = new javax.swing.JTextField();
         textData = new net.sf.nachocalendar.components.DateField();
+        textHoraInicial = new javax.swing.JFormattedTextField();
+        textHoraFinal = new javax.swing.JFormattedTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -106,11 +106,9 @@ public class CRUDDiaFase extends javax.swing.JFrame {
 
         jLabel4.setText("Hora Final");
 
-        textHoraInicial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textHoraInicialActionPerformed(evt);
-            }
-        });
+        textHoraInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+
+        textHoraFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
 
         jMenu1.setText("Menu");
 
@@ -361,17 +359,16 @@ public class CRUDDiaFase extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(textData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(textHoraInicial, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                                .addComponent(textHoraFinal))))
+                            .addComponent(textHoraInicial, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                            .addComponent(textHoraFinal)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(ButtonLimparDiaFase)
                         .addGap(18, 18, 18)
                         .addComponent(ButtonSalvarDiaFase)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,7 +381,7 @@ public class CRUDDiaFase extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(textHoraInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(textHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -398,23 +395,25 @@ public class CRUDDiaFase extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textHoraInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textHoraInicialActionPerformed
-        
-    }//GEN-LAST:event_textHoraInicialActionPerformed
-
     private void ButtonSalvarDiaFaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalvarDiaFaseActionPerformed
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
-            DiaFase diaFase = new DiaFase();
-            Date data = (Date) textData.getValue();
-            diaFase.getDataDia().setTime(data);
-            SimpleDateFormat df = new SimpleDateFormat("HH:mm");
-            diaFase.getHoraInicial().setTime(df.parse(textHoraInicial.getText()));
-            diaFase.getHoraFinal().setTime(df.parse(textHoraFinal.getText()));
-            crudfase.fase.getDiasFase().add(diaFase);
-            crudfase.atualizarListaDiaFase();
-            this.dispose();
+            if (textHoraInicial.getText().equals("") || textHoraInicial.getText().length() < 4) {
+                JOptionPane.showMessageDialog(rootPane, "Hora Inicial invalida");
+            } else if (textHoraFinal.getText().equals("") || textHoraFinal.getText().length() < 4) {
+                JOptionPane.showMessageDialog(rootPane, "Hora Final Invalida");
+            } else {
+                DiaFase diaFase = new DiaFase();
+                Date data = (Date) textData.getValue();
+                diaFase.getDataDia().setTime(data);
+                SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+                diaFase.getHoraInicial().setTime(df.parse(textHoraInicial.getText()));
+                diaFase.getHoraFinal().setTime(df.parse(textHoraFinal.getText()));
+                crudfase.fase.getDiasFase().add(diaFase);
+                crudfase.atualizarListaDiaFase();
+                this.dispose();
+            }
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
@@ -427,104 +426,104 @@ public class CRUDDiaFase extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        CRUDProva crudP= new CRUDProva();
+        CRUDProva crudP = new CRUDProva();
         crudP.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        ListarProva ltsP= new ListarProva();
+        ListarProva ltsP = new ListarProva();
         ltsP.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        CRUDConcurso crudC= new CRUDConcurso(null);
+        CRUDConcurso crudC = new CRUDConcurso(null);
         crudC.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        ListarConcurso lstC= new ListarConcurso();
+        ListarConcurso lstC = new ListarConcurso();
         lstC.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
-        CRUDQuestao crudQ= new CRUDQuestao(null);
+        CRUDQuestao crudQ = new CRUDQuestao(null);
         crudQ.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         // TODO add your handling code here:
-        ListarQuestao listarq= new ListarQuestao();
+        ListarQuestao listarq = new ListarQuestao();
         listarq.setVisible(true);
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
-        CRUDGenero crudG= new CRUDGenero(null);
+        CRUDGenero crudG = new CRUDGenero(null);
         crudG.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
-        ListarGenero lstG= new ListarGenero();
+        ListarGenero lstG = new ListarGenero();
         lstG.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
-        CRUDLocal crudL= new CRUDLocal(null);
+        CRUDLocal crudL = new CRUDLocal(null);
         crudL.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
-        ListarLocal lst= new ListarLocal();
+        ListarLocal lst = new ListarLocal();
         lst.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
-        CRUDEmpresa crudE= new CRUDEmpresa(null);
+        CRUDEmpresa crudE = new CRUDEmpresa(null);
         crudE.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
-        ListarEmpresa lstE= new ListarEmpresa();
+        ListarEmpresa lstE = new ListarEmpresa();
         lstE.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
-        CRUDElaborador el= new CRUDElaborador(null);
+        CRUDElaborador el = new CRUDElaborador(null);
         el.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
-        ListarElaborador lstEl= new ListarElaborador();
+        ListarElaborador lstEl = new ListarElaborador();
         lstEl.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
-        CRUDFuncionario crudF= new CRUDFuncionario(null);
+        CRUDFuncionario crudF = new CRUDFuncionario(null);
         crudF.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
-        ListarFuncionario lstF= new ListarFuncionario();
+        ListarFuncionario lstF = new ListarFuncionario();
         lstF.setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        TelaInicial tl= new TelaInicial();
+        TelaInicial tl = new TelaInicial();
         tl.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -535,23 +534,23 @@ public class CRUDDiaFase extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
+        JOptionPane.showMessageDialog(rootPane, "'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
+                + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-         for (int i=0; i < getContentPane().getComponentCount(); i++) {  
-                   
-                    Component c = getContentPane().getComponent(i);  
-  
-                    if (c instanceof JTextField) {  
-                        
-                        JTextField field = (JTextField) c;  
-                        field.setText("");  
-                         
-                    }  
-                }  
+        for (int i = 0; i < getContentPane().getComponentCount(); i++) {
+
+            Component c = getContentPane().getComponent(i);
+
+            if (c instanceof JTextField) {
+
+                JTextField field = (JTextField) c;
+                field.setText("");
+
+            }
+        }
 
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
@@ -630,7 +629,7 @@ public class CRUDDiaFase extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private net.sf.nachocalendar.components.DateField textData;
-    private javax.swing.JTextField textHoraFinal;
-    private javax.swing.JTextField textHoraInicial;
+    private javax.swing.JFormattedTextField textHoraFinal;
+    private javax.swing.JFormattedTextField textHoraInicial;
     // End of variables declaration//GEN-END:variables
 }

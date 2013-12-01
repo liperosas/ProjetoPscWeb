@@ -467,24 +467,28 @@ public class CRUDFase extends javax.swing.JFrame {
     private void ButtonSalvarFaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalvarFaseActionPerformed
         try {
             // TODO add your handling code here:
-            if (alterar) {
-                for (DiaFase df : fase.getDiasFase()) {
-                    df.setFase(fase);
-                }
-                crudac.fases.get(posicao).setDiasFase(fase.getDiasFase());
-                crudac.fases.get(posicao).getLocal().setId((codLocal[comboLocalFase.getSelectedIndex()]));
-                crudac.carregarListaFases();
-                JOptionPane.showMessageDialog(this, "Fase Alterada com sucesso");
+            if (fase.getDiasFase().size() <= 0) {
+                JOptionPane.showMessageDialog(rootPane, "E necessario que seja cadastrado ao menos um dia fase para prosseguir");
             } else {
-                for (DiaFase df : fase.getDiasFase()) {
-                    df.setFase(fase);
+                if (alterar) {
+                    for (DiaFase df : fase.getDiasFase()) {
+                        df.setFase(fase);
+                    }
+                    crudac.fases.get(posicao).setDiasFase(fase.getDiasFase());
+                    crudac.fases.get(posicao).getLocal().setId((codLocal[comboLocalFase.getSelectedIndex()]));
+                    crudac.carregarListaFases();
+                    JOptionPane.showMessageDialog(this, "Fase Alterada com sucesso");
+                } else {
+                    for (DiaFase df : fase.getDiasFase()) {
+                        df.setFase(fase);
+                    }
+                    fase.getLocal().setId(codLocal[comboLocalFase.getSelectedIndex()]);
+                    crudac.fases.add(fase);
+                    crudac.carregarListaFases();
+                    JOptionPane.showMessageDialog(this, "Fase Cadastrada com sucesso");
                 }
-                fase.getLocal().setId(codLocal[comboLocalFase.getSelectedIndex()]);
-                crudac.fases.add(fase);
-                crudac.carregarListaFases();
-                JOptionPane.showMessageDialog(this, "Fase Cadastrada com sucesso");
+                this.dispose();
             }
-            this.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
@@ -627,7 +631,7 @@ public class CRUDFase extends javax.swing.JFrame {
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(rootPane, "'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
+                + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void ButtonCancelarFaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelarFaseActionPerformed

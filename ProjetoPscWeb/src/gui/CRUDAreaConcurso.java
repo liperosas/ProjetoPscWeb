@@ -37,7 +37,7 @@ public class CRUDAreaConcurso extends javax.swing.JFrame {
         this.crdC = crdC;
         this.carregarListaFases();
         ArrayList<Fase> fases;
-        
+
 
     }
 
@@ -63,6 +63,7 @@ public class CRUDAreaConcurso extends javax.swing.JFrame {
         int i = 1;
         for (Fase fase : fases) {
             model.addRow(new Object[]{i + "ª Fase", fase.getDiasFase().size()});
+            i++;
         }
         tabelaListarFase.setModel(model);
     }
@@ -489,24 +490,28 @@ public class CRUDAreaConcurso extends javax.swing.JFrame {
     private void ButtonSalvarAreaConcursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalvarAreaConcursoActionPerformed
         try {
             // TODO add your handling code here:
-            if (alterar) {
-                crdC.areaConcursos.get(posicao).setFases(fases);
-                crdC.areaConcursos.get(posicao).setNome(textNomeAreaConcurso.getText());
-                crdC.areaConcursos.get(posicao).setVagas(Integer.parseInt(textQtdVagasAreaConcurso.getText()));
-                
-                crdC.carregarListaAreaConcurso();
-                this.dispose();
+            if (fases.size() <= 0) {
+                JOptionPane.showMessageDialog(rootPane, "E necessario que haja ao menos uma fase cadastrada para prosseguir");
             } else {
-                areaConcurso.setFases(fases);
-                areaConcurso.setNome(textNomeAreaConcurso.getText());
-               
-                areaConcurso.setVagas(Integer.parseInt(textQtdVagasAreaConcurso.getText()));
-                for (Fase fase : areaConcurso.getFases()) {
-                    fase.setAreaconcurso(areaConcurso);
+                if (alterar) {
+                    crdC.areaConcursos.get(posicao).setFases(fases);
+                    crdC.areaConcursos.get(posicao).setNome(textNomeAreaConcurso.getText());
+                    crdC.areaConcursos.get(posicao).setVagas(Integer.parseInt(textQtdVagasAreaConcurso.getText()));
+
+                    crdC.carregarListaAreaConcurso();
+                    this.dispose();
+                } else {
+                    areaConcurso.setFases(fases);
+                    areaConcurso.setNome(textNomeAreaConcurso.getText());
+
+                    areaConcurso.setVagas(Integer.parseInt(textQtdVagasAreaConcurso.getText()));
+                    for (Fase fase : areaConcurso.getFases()) {
+                        fase.setAreaconcurso(areaConcurso);
+                    }
+                    crdC.areaConcursos.add(areaConcurso);
+                    crdC.carregarListaAreaConcurso();
+                    this.dispose();
                 }
-                crdC.areaConcursos.add(areaConcurso);
-                crdC.carregarListaAreaConcurso();
-                this.dispose();
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -545,9 +550,9 @@ public class CRUDAreaConcurso extends javax.swing.JFrame {
         if (tabelaListarFase.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(rootPane, "Selecione uma fase para alterar");
         } else {
-         CRUDFase crudfase = new CRUDFase(this, fases.get(tabelaListarFase.getSelectedRow()), tabelaListarFase.getSelectedRow());
-         crudfase.setVisible(true);
-       }        
+            CRUDFase crudfase = new CRUDFase(this, fases.get(tabelaListarFase.getSelectedRow()), tabelaListarFase.getSelectedRow());
+            crudfase.setVisible(true);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -661,7 +666,7 @@ public class CRUDAreaConcurso extends javax.swing.JFrame {
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(rootPane, "'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
+                + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void ButtonLimparAreaConcursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLimparAreaConcursoActionPerformed

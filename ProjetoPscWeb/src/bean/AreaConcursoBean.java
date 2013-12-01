@@ -168,7 +168,7 @@ public class AreaConcursoBean {
 			// TODO Auto-generated catch block
 			mensagem = e.getMessage();
 			e.printStackTrace();
-			context.addMessage("messages", new FacesMessage(
+			context.addMessage("mensagem", new FacesMessage(
 					FacesMessage.SEVERITY_INFO,
 					"Cadastro realizado com Sucesso", "Area do Concurso"));
 			context.getExternalContext().getFlash().setKeepMessages(true);

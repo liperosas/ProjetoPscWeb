@@ -31,15 +31,13 @@ public class RNQuestaoMultipla {
     public void atualizar(QuestaoMultiplaEscolha questaoMultiplaEscolha) throws Exception {
 
         if (questaoMultiplaEscolha.getId() <= 0) {
-            throw new Exception("Id de quest�o inv�lido!");
+            throw new Exception("Id de questao invalido!");
         } else if (questaoMultiplaEscolha.getElaborador().equals("") || questaoMultiplaEscolha.getElaborador() == null) {
-            throw new Exception("Quest�o com elaborador inv�lido!");
+            throw new Exception("Questao com elaborador invalido!");
         } else if (questaoMultiplaEscolha.getGenero() == null) {
-            throw new Exception("G�nero de quest�o inv�lido!");
-        } else if (questaoMultiplaEscolha.getReferencia().equals("") || questaoMultiplaEscolha.getReferencia() == null) {
-            throw new Exception("Quest�o sem refer�ncia v�lida!");
+            throw new Exception("Ganero de questao invalido!");
         } else if (questaoMultiplaEscolha.getTexto().equals("") || questaoMultiplaEscolha.getTexto() == null) {
-            throw new Exception("Quest�o vazia!");
+            throw new Exception("Questao vazia!");
         } else {
             dao.atualizar(questaoMultiplaEscolha);
         }

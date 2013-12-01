@@ -4,11 +4,28 @@
  */
 package gui;
 
+import classes.Alternativa;
+import classes.DiaFase;
 import classes.Empresa;
 import classes.Gabarito;
 import classes.Prova;
+import classes.Questao;
+import classes.QuestaoDiscursiva;
+import classes.QuestaoMultiplaEscolha;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import fachada.Fachada;
 import fachada.IFachada;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -65,13 +82,13 @@ public class ListarProva extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        ButtonAlterarProva = new javax.swing.JButton();
         ButtonRemoverProva = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableListarProva = new javax.swing.JTable();
         ButtonCadastrarProva = new javax.swing.JButton();
         ButtonListarProva = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -110,8 +127,6 @@ public class ListarProva extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel1.setText("Lista de Provas");
-
-        ButtonAlterarProva.setText("Alterar");
 
         ButtonRemoverProva.setText("Remover");
         ButtonRemoverProva.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +167,13 @@ public class ListarProva extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Visualizar Prova");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -380,22 +402,20 @@ public class ListarProva extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(ButtonListarProva, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(ButtonCadastrarProva)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ButtonListarProva, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButtonCadastrarProva, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ButtonRemoverProva, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(ButtonAlterarProva, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButtonRemoverProva, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -405,13 +425,13 @@ public class ListarProva extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonRemoverProva)
-                    .addComponent(ButtonAlterarProva)
                     .addComponent(ButtonCadastrarProva)
                     .addComponent(ButtonListarProva)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(19, 19, 19))
         );
 
@@ -466,98 +486,98 @@ public class ListarProva extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        CRUDProva crudP= new CRUDProva();
+        CRUDProva crudP = new CRUDProva();
         crudP.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        CRUDConcurso crudC= new CRUDConcurso(null);
+        CRUDConcurso crudC = new CRUDConcurso(null);
         crudC.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        ListarConcurso lstC= new ListarConcurso();
+        ListarConcurso lstC = new ListarConcurso();
         lstC.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
-        CRUDQuestao crudQ= new CRUDQuestao(null);
+        CRUDQuestao crudQ = new CRUDQuestao(null);
         crudQ.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         // TODO add your handling code here:
-        ListarQuestao listarq= new ListarQuestao();
+        ListarQuestao listarq = new ListarQuestao();
         listarq.setVisible(true);
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
-        CRUDGenero crudG= new CRUDGenero(null);
+        CRUDGenero crudG = new CRUDGenero(null);
         crudG.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
-        ListarGenero lstG= new ListarGenero();
+        ListarGenero lstG = new ListarGenero();
         lstG.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
-        CRUDLocal crudL= new CRUDLocal(null);
+        CRUDLocal crudL = new CRUDLocal(null);
         crudL.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
-        ListarLocal lst= new ListarLocal();
+        ListarLocal lst = new ListarLocal();
         lst.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
-        CRUDEmpresa crudE= new CRUDEmpresa(null);
+        CRUDEmpresa crudE = new CRUDEmpresa(null);
         crudE.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
-        ListarEmpresa lstE= new ListarEmpresa();
+        ListarEmpresa lstE = new ListarEmpresa();
         lstE.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
-        CRUDElaborador el= new CRUDElaborador(null);
+        CRUDElaborador el = new CRUDElaborador(null);
         el.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
-        ListarElaborador lstEl= new ListarElaborador();
+        ListarElaborador lstEl = new ListarElaborador();
         lstEl.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
-        CRUDFuncionario crudF= new CRUDFuncionario(null);
+        CRUDFuncionario crudF = new CRUDFuncionario(null);
         crudF.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
-        ListarFuncionario lstF= new ListarFuncionario();
+        ListarFuncionario lstF = new ListarFuncionario();
         lstF.setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        TelaInicial tl= new TelaInicial();
+        TelaInicial tl = new TelaInicial();
         tl.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -568,9 +588,73 @@ public class ListarProva extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane,"'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
-            + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
+        JOptionPane.showMessageDialog(rootPane, "'EOC' Empresa Organizadora de Concurso\n dispoe de diversas ferramentas de gerenciamento\n"
+                + "Para adequar-se ao uso da ferramenta oferecemos o treinamento necessario\n.Duvidas ligue para fone:Telefone de Antonio ");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (TableListarProva.getSelectedRow() != -1) {
+            try {
+                Prova prova = provas.get(TableListarProva.getSelectedRow());
+                String letras = "abcdefghijklmnopqrstuvxz";
+                DiaFase diaFase = new DiaFase();
+                diaFase = prova.getDiaFase();
+                Document provaPDF = new Document(PageSize.A4, 72, 72, 72, 72);
+                Font font = FontFactory.getFont("Arial", 10);
+                OutputStream os = new FileOutputStream("ProvaConcurso.pdf");
+                PdfWriter.getInstance(provaPDF, os);
+                provaPDF.addAuthor("Empresa Elaboradora de Concursos");
+                provaPDF.open();
+                Image image = Image.getInstance("Unibratec.png");
+                image.setAbsolutePosition(10f, 780f);
+                provaPDF.add(image);
+                provaPDF.add(new Paragraph("Nome do Concursando:_____________________________________________________________", font));
+                SimpleDateFormat formatoData = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
+                provaPDF.add(new Paragraph("Matéria sendo Avaliada: " + fachada.consultarGeneroPorId(prova.getGenero().getId()).getGenero() + "                                      Data: " + formatoData.format(diaFase.getDataDia().getTime()).toString(), font));
+                Paragraph nomeConcurso = new Paragraph(new Paragraph("Concurso " + diaFase.getFase().getAreaconcurso().getConcurso().getNomeConcurso(), font));
+                nomeConcurso.setAlignment(Element.ALIGN_CENTER);
+                provaPDF.add(new Paragraph("Area do Concurso: " + diaFase.getFase().getAreaconcurso().getNome(), font));
+                provaPDF.add(new Paragraph("Inicio da Prova: " + formatoHora.format(diaFase.getHoraInicial().getTime()).toString() + "     Termino da Prova: " + formatoHora.format(diaFase.getHoraFinal().getTime()).toString(), font));
+                provaPDF.add(Chunk.NEWLINE);
+                provaPDF.add(nomeConcurso);
+                provaPDF.add(Chunk.NEWLINE);
+                provaPDF.add(Chunk.NEWLINE);
+                int numQuestao = 1;
+                for (Questao questao : prova.getQuestoes()) {
+                    String referencia = "";
+                    if (questao.getReferencia() != null && !questao.getReferencia().trim().equals("")) {
+                        referencia = "(" + questao.getReferencia() + ")";
+                    }
+                    provaPDF.add(new Paragraph(15, numQuestao++ + "ª) " + referencia + questao.getTexto(), font));
+                    if (questao instanceof QuestaoMultiplaEscolha) {
+                        int i = 0;
+                        QuestaoMultiplaEscolha questaoMultiplaEscolha = (QuestaoMultiplaEscolha) questao;
+                        for (Alternativa alternativa : questaoMultiplaEscolha.getAlternativas()) {
+                            provaPDF.add(new Paragraph(15 , letras.charAt(i) + ") " + alternativa.getTexto(), font));
+                            i++;
+                        }
+                    } else if (questao instanceof QuestaoDiscursiva) {
+                        provaPDF.add(Chunk.NEWLINE);
+                        QuestaoDiscursiva questaoDiscursiva = (QuestaoDiscursiva) questao;
+                        for (int i = 0; i < questaoDiscursiva.getLinhas(); i++) {
+                            provaPDF.add(new Paragraph("_______________________________________________________________________________", font));
+                        }
+                    }
+
+                    provaPDF.add(Chunk.NEWLINE);
+                    provaPDF.add(Chunk.NEWLINE);
+                }
+
+                provaPDF.close();
+                ProvaPDFView ppdfv = new ProvaPDFView();
+                ppdfv.setVisible(true);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -607,12 +691,12 @@ public class ListarProva extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonAlterarProva;
     private javax.swing.JButton ButtonCadastrarProva;
     private javax.swing.JButton ButtonListarProva;
     private javax.swing.JButton ButtonRemoverProva;
     private javax.swing.JTable TableListarProva;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
