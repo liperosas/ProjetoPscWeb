@@ -52,12 +52,11 @@
 						<h:outputText value="#{areaConcurso.vagas}">
 						</h:outputText>
 					</p:column>
-
-					<p:commandButton id="areasConcurso"
-							action="#{areaConcursoBean.cadastrarConcursandoArea}"
-							style="margin-right:20px;" ajax="false" value="Cadastrar-se"
-							update="messages">
-						</p:commandButton>
+					<f:facet name="footer">
+						<p:commandButton id="CadastrarAreaConcurso" value="Cadastrar-se na Área"
+							icon="ui-icon-search"
+							action="#{areaConcursoBean.cadastrarConcursandoArea}" ajax="false" />
+					</f:facet>
 				</p:dataTable>
 			</h:form>
 

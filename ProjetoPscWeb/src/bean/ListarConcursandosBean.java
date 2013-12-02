@@ -32,28 +32,20 @@ public class ListarConcursandosBean {
 			fase = (Fase) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("fase");
             fase = fachada.consultarFasePorId(fase.getId());
         } catch (Exception ex) {
-        	
+        	ex.printStackTrace();
         }
-        if (fase.isClassificacaoRealizada()){
-        concursandos = new ArrayList<Concursando>();
+		concursandos = new ArrayList<Concursando>();
+        //if (fase.isClassificacaoRealizada()){        
         try {
             concursandos = fachada.calcularNotaMultiplaConcursandos(fase);
             medias = new double[concursandos.size()];
         } catch (Exception ex) {
-
+        	ex.printStackTrace();
         }
-        if (!fase.isClassificacaoRealizada()) {
-            fase.setClassificacaoRealizada(true);
-        }
-        this.classificarConcursandos();
-        } else {
-        	try {
-				FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml?faces-redirect=true");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
+        //this.classificarConcursandos();
+        //} else {
+        	
+        //}
 	}
 	
 	public void classificarConcursandos() {

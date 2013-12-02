@@ -39,7 +39,7 @@
 			<h:form id="form">
 				<p:growl id="messages" showDetail="true" />
 				<p:dataTable var="fase" value="#{listarFasesBean.fases}"
-					selection="#{listarFasesBean.concurso}" rowKey="#{fase.id}"
+					selection="#{listarFasesBean.fase}" rowKey="#{fase.id}"
 					binding="#{listarFasesBean.tableFases}" selectionMode="single">
 					<p:column headerText="Local da Fase">
 						<h:outputText value="#{fase.local.nome}">
@@ -50,7 +50,7 @@
 						</h:outputText>
 					</p:column>
 					<p:column headerText="Area do Concurso">
-						<h:outputText value="#{fase.areaConcurso.nome}">
+						<h:outputText value="#{fase.areaconcurso.nome}">
 						</h:outputText>
 					</p:column>
 					<f:facet name="footer">

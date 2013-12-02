@@ -1,6 +1,7 @@
 package bean;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -25,46 +26,52 @@ public class ListarFasesBean {
 	private IFachada fachada = Fachada.obterInstancia();
 
 	private FacesContext context = FacesContext.getCurrentInstance();
-	
+
 	private DataTable tableFases;
 
+	private Fase fase;
+
 	public ListarFasesBean() {
-		try{
-		if (context.getExternalContext().getSessionMap().get("concurso") == null) {
-			try {
-				context.getExternalContext().redirect("index.xhtml?faces-redirect=true");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			setConcurso(((Concurso)context.getExternalContext().getSessionMap().get("concurso")));
-			for (AreaConcurso areaConcurso : getConcurso().getAreasConcurso()){
-				for (Fase fase : areaConcurso.getFases()){
-					getFases().add(fase);
+		try {
+			fases = new ArrayList<Fase>();
+			if (context.getExternalContext().getSessionMap().get("concurso") == null) {
+				try {
+					context.getExternalContext().redirect("index.xhtml?faces-redirect=true");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				setConcurso(((Concurso) context.getExternalContext()
+						.getSessionMap().get("concurso")));
+				for (AreaConcurso areaConcurso : getConcurso()
+						.getAreasConcurso()) {
+					for (Fase fase : areaConcurso.getFases()) {
+						getFases().add(fase);
+					}
 				}
 			}
-		}
-		}catch (Exception ex){
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
-	
-	public String listarClassificados(){
-		Fase fase = (Fase) getTableFases().getSelection();
-		context.getExternalContext().getSessionMap().put("fase", fase);
+
+	public String listarClassificados() {
+		setFase((Fase) tableFases.getSelection());
+		context.getExternalContext().getSessionMap().put("fase", getFase());
 		return "listarClassificacao.xhtml?faces-redirect=true";
 	}
 
-	private List<Fase> getFases() {
+	public List<Fase> getFases() {
 		return fases;
 	}
 
-	
+	/**
+	 * @return the fases
+	 */
 	public void setFases(List<Fase> fases) {
 		this.fases = fases;
 	}
-
 
 	/**
 	 * @return the concurso
@@ -81,17 +88,24 @@ public class ListarFasesBean {
 		this.concurso = concurso;
 	}
 
-	private DataTable getTableFases() {
+	public DataTable getTableFases() {
 		return tableFases;
 	}
-	
+
 	/**
-	 * @param tableFases
-	 *            the tableFases to set
+	 * @param tableConcursos
+	 *            the tableConcursos to set
 	 */
 	public void setTableFases(DataTable tableFases) {
 		this.tableFases = tableFases;
 	}
 
+	public Fase getFase() {
+		return fase;
+	}
+
+	public void setFase(Fase fase) {
+		this.fase = fase;
+	}
 
 }

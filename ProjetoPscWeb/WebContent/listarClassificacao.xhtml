@@ -1,11 +1,49 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Cadastre-se em um de nossos concursos</title>
+</h:head>
+<h:body>
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" size="100">
+		</p:layoutUnit>
+		<p:layoutUnit position="west" size="200">
+			<h:form>
+				<h:panelGrid columns="1">
+					<p:commandLink action="login?faces-redirect=true" ajax="false">
+						<h:outputText value="Realizar Login" />
+					</p:commandLink>
+					<p:commandLink action="listarConcursos?faces-redirect=true"
+						ajax="false">
+						<h:outputText value="Concursos" />
+					</p:commandLink>
+					<p:commandLink action="cadastrarConcursando?faces-redirect=true"
+						ajax="false">
+						<h:outputText value="Cadastre-se" />
+					</p:commandLink>
+					<p:commandLink action="listarClassificacao?faces-redirect=true"
+						ajax="false">
+						<h:outputText value="Classificação" />
+					</p:commandLink>
+					<p:commandLink action="informacao?faces-redirect=true" ajax="false">
+						<h:outputText value="Informação" />
+					</p:commandLink>
+				</h:panelGrid>
+			</h:form>
+		</p:layoutUnit>
+		<p:layoutUnit position="center">
+			<h:form id="form">
+				<p:growl closable="true" id="messages" for="messages" />
+				<p:dataList value="#{listarConcursandosBean.concursandos}" var="concursando" type="ordered">  
+    				#{concursando.nome}
+				</p:dataList> 
+			</h:form>
 
-</body>
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
 </html>

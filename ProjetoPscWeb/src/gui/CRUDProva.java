@@ -57,72 +57,50 @@ public class CRUDProva extends javax.swing.JFrame {
     Prova prova = new Prova();
     List<Questao> questoesEscolhidas = new ArrayList<Questao>();
     ArrayList<Genero> generos = new ArrayList<Genero>();
-    long[] codGeneros;
-    long[] codConcurso;
-    long[] codFase;
-    long[] codDiaFase;
-    long[] codAreaConcurso;
+    List<Concurso> concursos;
+    List<AreaConcurso> areasconcurso;
+    List<Fase> fases;
+    List<DiaFase> diasFases;
 
     public CRUDProva() {
         try {
             initComponents();
             generos = (ArrayList<Genero>) fachada.consultarTodosGenero();
-            codGeneros = new long[generos.size()];
-            int i = 0;
             for (Genero genero : generos) {
                 ComboGeneroProva.addItem(genero.getGenero());
-                codGeneros[i] = genero.getId();
-                i++;
             }
             questoesMultiplaEscolha = (ArrayList<QuestaoMultiplaEscolha>) fachada.consultarTodosPorGeneroQuestaoMultiplaEscolha(generos.get(ComboGeneroProva.getSelectedIndex()));
             questoesDiscursiva = (ArrayList<QuestaoDiscursiva>) fachada.consultarTodosPorGeneroQuestaoDiscursiva(generos.get(ComboGeneroProva.getSelectedIndex()));
             this.carregarListaQuestoesMultiplaEscolha();
             this.carregarListaQuestoesDiscursiva();
-            ArrayList<Concurso> concursos = new ArrayList<Concurso>();
-            concursos = (ArrayList<Concurso>) fachada.consultarTodosConcurso();
-            codConcurso = new long[concursos.size()];
-            i = 0;
+            concursos = new ArrayList<Concurso>();
+            concursos = (ArrayList<Concurso>) fachada.consultarTodosConcurso();                       
             DefaultComboBoxModel boxModel = new DefaultComboBoxModel();
             for (Concurso concurso : concursos) {
                 boxModel.addElement(concurso.getNomeConcurso().toString());
-                codConcurso[i] = concurso.getId();
-                i++;
             }
             ComboConcursoProva.setModel(boxModel);
             Concurso concurso = new Concurso();
-            concurso = fachada.consultarConcursoPorId(codConcurso[ComboConcursoProva.getSelectedIndex()]);
-            codAreaConcurso = new long[concurso.getAreasConcurso().size()];
-            i = 0;
+            concurso = concursos.get(ComboConcursoProva.getSelectedIndex());
             boxModel = new DefaultComboBoxModel();
             for (AreaConcurso areaConcurso : concurso.getAreasConcurso()) {
                 boxModel.addElement(areaConcurso.getNome());
-                codAreaConcurso[i] = areaConcurso.getId();
-                i++;
             }
-            ComboAreaConcursoProva.setModel(boxModel);
-            AreaConcurso areaConcurso = new AreaConcurso();
-            areaConcurso = fachada.consultarAreaConcursoPorId(codAreaConcurso[ComboAreaConcursoProva.getSelectedIndex()]);
-            codFase = new long[areaConcurso.getFases().size()];
-            i = 0;
+            ComboAreaConcursoProva.setModel(boxModel);            
+            AreaConcurso areaConcurso =  concursos.get(ComboConcursoProva.getSelectedIndex()).getAreasConcurso().get(ComboAreaConcursoProva.getSelectedIndex());
             int x = 1;
             boxModel = new DefaultComboBoxModel();
             for (Fase fase : areaConcurso.getFases()) {
                 boxModel.addElement(x + "ª Fase");
-                codFase[i] = fase.getId();
-                i++;
                 x++;
             }
             ComboFaseProva.setModel(boxModel);
             Fase fase = new Fase();
-            fase = fachada.consultarFasePorId(codFase[ComboFaseProva.getSelectedIndex()]);
-            codDiaFase = new long[fase.getDiasFase().size()];
-            i = 0;
+            fase =  concursos.get(ComboConcursoProva.getSelectedIndex()).getAreasConcurso().get(ComboAreaConcursoProva.getSelectedIndex()).getFases().get(ComboFaseProva.getSelectedIndex());
             boxModel = new DefaultComboBoxModel();
             for (DiaFase diafase : fase.getDiasFase()) {
                 SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
                 boxModel.addElement(format.format(diafase.getDataDia().getTime()));
-                codDiaFase[i] = diafase.getId();
-                i++;
             }
             ComboDiaFaseProva.setModel(boxModel);
         } catch (Exception ex) {
@@ -180,7 +158,7 @@ public class CRUDProva extends javax.swing.JFrame {
         try {
             String letras = "abcdefghijklmnopqrstuvxz";
             DiaFase diaFase = new DiaFase();
-            diaFase = fachada.consultarDiaFasePorId(codDiaFase[ComboDiaFaseProva.getSelectedIndex()]);
+            diaFase = concursos.get(ComboConcursoProva.getSelectedIndex()).getAreasConcurso().get(ComboAreaConcursoProva.getSelectedIndex()).getFases().get(ComboFaseProva.getSelectedIndex()).getDiasFase().get(ComboDiaFaseProva.getSelectedIndex());
             prova.setGenero(generos.get(ComboGeneroProva.getSelectedIndex()));
             prova.setDiaFase(diaFase);
             Document provaPDF = new Document(PageSize.A4, 72, 72, 72, 72);
@@ -853,7 +831,7 @@ public class CRUDProva extends javax.swing.JFrame {
             } else {
                 prova = new Prova();
                 Genero genero = new Genero();
-                genero.setId(codGeneros[ComboGeneroProva.getSelectedIndex()]);
+                genero.setId(generos.get(ComboGeneroProva.getSelectedIndex()).getId());
                 ArrayList<QuestaoDiscursiva> questoesDiscursivas = new ArrayList<QuestaoDiscursiva>();
                 ArrayList<QuestaoMultiplaEscolha> questoesMultiplaEscolhas = new ArrayList<QuestaoMultiplaEscolha>();
                 questoesDiscursivas = (ArrayList<QuestaoDiscursiva>) fachada.consultarTodosPorGeneroQuestaoDiscursiva(genero);
@@ -891,6 +869,10 @@ public class CRUDProva extends javax.swing.JFrame {
                     questoesMultiplaEscolhas.remove(questaoMultiplaEscolha);
                     prova.getQuestoes().add(questaoMultiplaEscolha);
                 }
+                prova.setGenero(generos.get(ComboGeneroProva.getSelectedIndex()));
+                DiaFase diaFase = new DiaFase();
+                diaFase = concursos.get(ComboConcursoProva.getSelectedIndex()).getAreasConcurso().get(ComboAreaConcursoProva.getSelectedIndex()).getFases().get(ComboFaseProva.getSelectedIndex()).getDiasFase().get(ComboDiaFaseProva.getSelectedIndex());
+                prova.setDiaFase(diaFase);
                 this.gerarProva();
             }
         } catch (Exception ex) {
@@ -908,14 +890,10 @@ public class CRUDProva extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             Concurso concurso = new Concurso();
-            concurso = fachada.consultarConcursoPorId(codConcurso[ComboConcursoProva.getSelectedIndex()]);
-            codAreaConcurso = new long[concurso.getAreasConcurso().size()];
-            int i = 0;
+            concurso = concursos.get(ComboConcursoProva.getSelectedIndex());
             DefaultComboBoxModel boxModel = new DefaultComboBoxModel();
             for (AreaConcurso areaConcurso : concurso.getAreasConcurso()) {
                 boxModel.addElement(areaConcurso.getNome());
-                codAreaConcurso[i] = areaConcurso.getId();
-                i++;
             }
             ComboAreaConcursoProva.setModel(boxModel);
         } catch (Exception ex) {
@@ -932,15 +910,11 @@ public class CRUDProva extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             AreaConcurso areaConcurso = new AreaConcurso();
-            areaConcurso = fachada.consultarAreaConcursoPorId(codAreaConcurso[ComboAreaConcursoProva.getSelectedIndex()]);
-            codFase = new long[areaConcurso.getFases().size()];
-            int i = 0;
+            areaConcurso = concursos.get(ComboConcursoProva.getSelectedIndex()).getAreasConcurso().get(ComboAreaConcursoProva.getSelectedIndex());
             int x = 1;
             DefaultComboBoxModel boxModel = new DefaultComboBoxModel();
             for (Fase fase : areaConcurso.getFases()) {
                 boxModel.addElement(x + "ª Fase");
-                codFase[i] = fase.getId();
-                i++;
                 x++;
             }
             ComboFaseProva.setModel(boxModel);
@@ -954,15 +928,11 @@ public class CRUDProva extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             Fase fase = new Fase();
-            fase = fachada.consultarFasePorId(codFase[ComboFaseProva.getSelectedIndex()]);
-            codDiaFase = new long[fase.getDiasFase().size()];
-            int i = 0;
+            fase = concursos.get(ComboConcursoProva.getSelectedIndex()).getAreasConcurso().get(ComboAreaConcursoProva.getSelectedIndex()).getFases().get(ComboFaseProva.getSelectedIndex());
             DefaultComboBoxModel boxModel = new DefaultComboBoxModel();
             for (DiaFase diafase : fase.getDiasFase()) {
                 SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
                 boxModel.addElement(format.format(diafase.getDataDia().getTime()));
-                codDiaFase[i] = diafase.getId();
-                i++;
             }
             ComboDiaFaseProva.setModel(boxModel);
         } catch (Exception ex) {

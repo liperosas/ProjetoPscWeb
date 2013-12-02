@@ -34,8 +34,7 @@ public class AreaConcursoBean {
 	FacesContext context = FacesContext.getCurrentInstance();
 
 	public AreaConcursoBean() {
-		if (!FacesContext.getCurrentInstance().getExternalContext()
-				.getSessionMap().get("concurso").equals(null)) {
+		if (!FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("concurso").equals(null)) {
 			try {
 				concurso = (Concurso) FacesContext.getCurrentInstance()
 						.getExternalContext().getSessionMap().get("concurso");

@@ -43,7 +43,7 @@ public abstract class RNPessoa {
 			throw new Exception("CPF Inv�lido");
 		} else if (!validaTelefone(pessoa.getTelefone())) {
 			throw new Exception("Telefone inv�lido");
-		} else if (!validaTelefone(pessoa.getCelular())) {
+		} /*else if (!validaTelefone(pessoa.getCelular())) {
 			throw new Exception("Celular inv�lido");
 		}/* else if (pessoa.getData_nasc().YEAR < 1900
 				|| pessoa.getData_nasc().YEAR > Calendar.getInstance().YEAR) {
