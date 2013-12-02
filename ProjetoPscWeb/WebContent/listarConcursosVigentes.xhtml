@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Bem Vindos Concursandos</title>
+</h:head>
+<h:body>
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" size="100">
+		</p:layoutUnit>
+		<p:layoutUnit position="west" size="200">
+			<h:form>
+				<h:panelGrid columns="1">
+					<p:commandLink action="login?faces-redirect=true" ajax="false">
+						<h:outputText value="Realizar Login" />
+					</p:commandLink>
+					<p:commandLink action="listarConcursos?faces-redirect=true"
+						ajax="false">
+						<h:outputText value="Concursos" />
+					</p:commandLink>
+					<p:commandLink action="cadastrarConcursando?faces-redirect=true"
+						ajax="false">
+						<h:outputText value="Cadastre-se" />
+					</p:commandLink>
+					<p:commandLink action="listarClassificacao?faces-redirect=true"
+						ajax="false">
+						<h:outputText value="Classificação" />
+					</p:commandLink>
+					<p:commandLink action="informacao?faces-redirect=true" ajax="false">
+						<h:outputText value="Informação" />
+					</p:commandLink>
+				</h:panelGrid>
+			</h:form>
+		</p:layoutUnit>
+		<p:layoutUnit position="center">
+			<h:form id="form">
+				<p:growl id="messages" showDetail="true" />
+				<p:dataTable var="concurso" value="#{listarConcursosBean.concursos}"
+					selection="#{listarConcursosBean.concurso}" rowKey="#{concurso.id}"
+					binding="#{listarConcursosBean.tableConcursos}" selectionMode="single">
+					<p:column headerText="Nome do Concurso">
+						<h:outputText value="#{concurso.nomeConcurso}" />
+					</p:column>
+					<p:column headerText="Data do início das Inscrições">
+						<h:outputText value="#{concurso.datainscricao.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Data do término das Inscrições">
+						<h:outputText value="#{concurso.datafinal.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<f:facet name="footer">
+						<p:commandButton id="listarFases" value="Fases do Concurso"
+							icon="ui-icon-search"
+							action="#{listarConcursosBean.listarFasesConcurso}" ajax="false" />
+					</f:facet>
+				</p:dataTable>
+			</h:form>
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
+</html>
